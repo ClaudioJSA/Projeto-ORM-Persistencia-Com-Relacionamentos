@@ -8,6 +8,6 @@ package role;
  *
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
-public class role {
+public class test1 {
     
 }
