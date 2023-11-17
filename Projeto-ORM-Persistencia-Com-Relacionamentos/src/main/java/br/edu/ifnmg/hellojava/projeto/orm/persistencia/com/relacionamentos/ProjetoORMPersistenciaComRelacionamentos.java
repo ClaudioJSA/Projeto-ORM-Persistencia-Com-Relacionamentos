@@ -4,6 +4,8 @@
 
 package br.edu.ifnmg.hellojava.projeto.orm.persistencia.com.relacionamentos;
 
+import test.Test;
+
 /**
  *
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
@@ -15,6 +17,6 @@ public class ProjetoORMPersistenciaComRelacionamentos {
 //        TestCrud.testeB();
 //        TestCrud.testeC();
 //        TestCrud.testeD();
-        TestCrud.testeE();
+        Test.testeE();
     }
 }

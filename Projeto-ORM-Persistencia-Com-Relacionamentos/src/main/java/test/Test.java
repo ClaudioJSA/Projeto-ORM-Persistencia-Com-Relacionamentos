@@ -25,7 +25,7 @@ import user.UserDao;
  *
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
-public class TestCrud {
+public class Test {
     
     public static void testeA() {
         try{
