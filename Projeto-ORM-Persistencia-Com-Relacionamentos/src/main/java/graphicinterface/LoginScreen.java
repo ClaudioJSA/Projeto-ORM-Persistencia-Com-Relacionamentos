@@ -56,6 +56,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         lblUsuario.setText("Usuário:");
 
+        txtUsuario.setText("testReader2");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -67,6 +68,7 @@ public class LoginScreen extends javax.swing.JFrame {
         lblStatusLogin.setForeground(new java.awt.Color(0, 204, 0));
         lblStatusLogin.setText("Digite suas credenciais");
 
+        txtSenha.setText("12321456");
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaActionPerformed(evt);
@@ -186,9 +188,9 @@ public class LoginScreen extends javax.swing.JFrame {
         credential.setUser(credentialDao.authenticate(credential));
         if(credential.getUser() != null){
             lblStatusLogin.setForeground(Color.green);
-            lblStatusLogin.setText("Autenticação realizada com sucesso.");
+            lblStatusLogin.setText("Digite suas credenciais.");
             setVisible(false);
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            TelaPrincipal telaPrincipal = new TelaPrincipal(credential.getUser(), this);
             telaPrincipal.setVisible(true);
         }
         else{
@@ -211,7 +213,7 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
-         dispose();
+        dispose();
     }//GEN-LAST:event_btnSairMouseClicked
 
     private void btnMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMouseClicked
