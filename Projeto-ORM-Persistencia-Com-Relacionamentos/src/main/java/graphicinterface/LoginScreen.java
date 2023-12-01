@@ -46,7 +46,7 @@ public class LoginScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca ByteBay");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocation((Toolkit.getDefaultToolkit().getScreenSize().width) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height) / 2);
+        setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - getWidth()) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - getHeight()) / 2);
         setName("scrLogin"); // NOI18N
         setUndecorated(true);
         setResizable(false);
