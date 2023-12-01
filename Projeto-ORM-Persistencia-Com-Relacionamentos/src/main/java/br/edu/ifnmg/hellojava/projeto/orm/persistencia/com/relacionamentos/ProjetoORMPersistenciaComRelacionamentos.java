@@ -4,7 +4,9 @@
 
 package br.edu.ifnmg.hellojava.projeto.orm.persistencia.com.relacionamentos;
 
-import test.Test;
+import graphicinterface.LoginScreen;
+import javax.swing.JFrame;
+
 
 /**
  *
@@ -13,10 +15,6 @@ import test.Test;
 public class ProjetoORMPersistenciaComRelacionamentos {
 
     public static void main(String[] args) {
-//        TestCrud.testeA();
-//        TestCrud.testeB();
-//        TestCrud.testeC();
-//        TestCrud.testeD();
-        Test.testeE();
+        
     }
 }

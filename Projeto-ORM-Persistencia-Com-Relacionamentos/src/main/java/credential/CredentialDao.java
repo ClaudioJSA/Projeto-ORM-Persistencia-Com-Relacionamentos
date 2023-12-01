@@ -112,24 +112,16 @@ public class CredentialDao extends Dao<Credential>{
     }
     
     public User authenticate(Credential credential){
-        try(PreparedStatement pstmt = DbConnection.getConnection().prepareStatement("SELECT id, username, password, lastAccess, enabled, user FROM " + TABLE +" WHERE username = ?")){
+        try(PreparedStatement pstmt = DbConnection.getConnection().prepareStatement("SELECT id, username, password, lastAccess, enabled, user FROM " + TABLE +" WHERE username = ? AND password = MD5(?)")){
             pstmt.setString(1, credential.getUsername());
+            String aux = credential.getPassword()+SALT;
+            pstmt.setString(2, aux);
             ResultSet resultSet = pstmt.executeQuery();
+            System.out.println(pstmt);
             if(resultSet.next()){
-                Credential auxCredential = extractObject(resultSet);
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                md.update((credential.getPassword() + SALT).getBytes());
-                byte[] hash = md.digest();
-                String senhaMd5 = String.format("%032x", new BigInteger(1, hash));
-                if(senhaMd5.equals(auxCredential.getPassword())){
-                    credential.setId(resultSet.getLong("id"));
-                    credential.setEnabled(auxCredential.isEnabled());
-                    credential.setLastAccess(auxCredential.getLastAccess());
-                    credential.setUser(auxCredential.getUser());
-                    return new UserDao().findById(auxCredential.getUser().getId());
-                }
+                credential = extractObject(resultSet);
+                return new UserDao().findById(credential.getUser().getId());
             }
-        return null;
         }catch(Exception ex){
             System.out.println("Ex: "+ex);
         }

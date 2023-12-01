@@ -4,6 +4,13 @@
  */
 package graphicinterface;
 
+import credential.Credential;
+import credential.CredentialDao;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import user.User;
+
 /**
  *
  * @author annekarolinneds
@@ -26,47 +33,53 @@ public class LoginScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblLogin = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        lblSenha = new javax.swing.JLabel();
+        lblStatusLogin = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
+        btnSair = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca ByteBay");
         setResizable(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphicinterface/LogoBiblio_resized-4.png"))); // NOI18N
+        lblLogin.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\LogoBiblio_resized-4.png")); // NOI18N
+        lblLogin.setVerifyInputWhenFocusTarget(false);
 
-        jLabel2.setText("Usuário:");
+        lblUsuario.setText("Usuário:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Senha:");
+        lblSenha.setText("Senha:");
 
-        jLabel4.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel4.setText("Conectando-se ao banco de dados...");
+        lblStatusLogin.setForeground(new java.awt.Color(0, 204, 0));
+        lblStatusLogin.setText("Conectando-se ao banco de dados...");
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSenha.setText("jPasswordField1");
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtSenhaActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Sair");
-
-        jButton2.setText("Entrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
             }
         });
 
@@ -76,64 +89,85 @@ public class LoginScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStatusLogin)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(lblSenha)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPasswordField1)
+                            .addComponent(txtSenha)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEntrar, btnSair});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblStatusLogin)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblUsuario)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblSenha)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnSair)
+                            .addComponent(btnEntrar))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        Credential credential = new Credential();
+        credential.setUser(new User());
+        try {
+            credential.setUsername(txtUsuario.getText());
+            credential.setPassword(new String(txtSenha.getPassword()));
+            System.out.println(credential);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        CredentialDao credentialDao = new CredentialDao();
+        credential.setUser(credentialDao.authenticate(credential));
+        if(credential.getUser() != null)
+            System.out.println(credential.getUser());
+        else
+            System.out.println("Credencaial invalida.");
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,13 +205,13 @@ public class LoginScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblStatusLogin;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
