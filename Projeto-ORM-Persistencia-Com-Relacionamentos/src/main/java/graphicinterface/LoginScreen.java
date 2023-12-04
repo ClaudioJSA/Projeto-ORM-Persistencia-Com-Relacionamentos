@@ -22,6 +22,7 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -46,7 +47,7 @@ public class LoginScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca ByteBay");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - getWidth()) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - getHeight()) / 2);
+        setLocation(new java.awt.Point(0, 0));
         setName("scrLogin"); // NOI18N
         setUndecorated(true);
         setResizable(false);
@@ -171,7 +172,7 @@ public class LoginScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
+        txtSenha.requestFocus();
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     
@@ -187,21 +188,17 @@ public class LoginScreen extends javax.swing.JFrame {
         CredentialDao credentialDao = new CredentialDao();
         credential.setUser(credentialDao.authenticate(credential));
         if(credential.getUser() != null){
-            lblStatusLogin.setForeground(Color.green);
-            lblStatusLogin.setText("Digite suas credenciais.");
             setVisible(false);
-            TelaPrincipal telaPrincipal = new TelaPrincipal(credential.getUser(), this);
-            telaPrincipal.setVisible(true);
+            new TelaPrincipal(credential.getUser(), this).setVisible(true);
         }
         else{
-            lblStatusLogin.setForeground(Color.red);
-            lblStatusLogin.setText("Credencaial invalida.");
+            new ErrorScreen(this, 0).setVisible(true);
         }
             
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
+        btnEntrarActionPerformed(evt);
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
