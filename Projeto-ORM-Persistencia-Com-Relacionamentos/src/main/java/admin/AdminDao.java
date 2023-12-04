@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reader;
+package admin;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,14 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import reader.ReaderDao;
 import repository.Dao;
 
 /**
  *
- * @author annekarolinneds;
+ * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
-public class ReaderDao extends Dao<Reader>{
-    public final String TABLE = "reader";
+public class AdminDao extends Dao<Admin>{
+    public final String TABLE = "admin";
 
     @Override
     public String getSaveStatement() {
@@ -47,51 +48,37 @@ public class ReaderDao extends Dao<Reader>{
     }
 
     @Override
-    public void coposeSaveOrUpdateStatement(PreparedStatement pstmt, Reader e) {
+    public void coposeSaveOrUpdateStatement(PreparedStatement pstmt, Admin e) {
         try {
             pstmt.setLong(1, e.getId());
-            
         } catch (SQLException ex) {
             Logger.getLogger(ReaderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public Reader extractObject(ResultSet rs) {
-        Reader reader = new Reader();
+    public Admin extractObject(ResultSet rs) {
+        Admin admin = new Admin();
         try{
-            reader.setId(rs.getLong("id"));
+            admin.setId(rs.getLong("id"));
         }catch(Exception ex){
                 System.out.println("Ex: " + ex);      
         }
-        return reader;
+        return admin;
     }
 
     @Override
-    public List<Reader> extractObjects(ResultSet rs) {
-        List<Reader> readers = new ArrayList<>();
+    public List<Admin> extractObjects(ResultSet rs) {
+        List<Admin> admins = new ArrayList<>();
         try{
             while(rs.next()){
-                Reader reader = new Reader();
-                reader.setId(rs.getLong("id"));
-                readers.add(reader);
+                Admin admin = new Admin();
+                admin.setId(rs.getLong("id"));
+                admins.add(admin);
             }
         }catch(Exception ex){
                 System.out.println("Ex: " + ex);      
         }   
-        return readers;
+        return admins;
     }
-
-    public ReaderDao() {
-    }
-
-    public String getTABLE() {
-        return TABLE;
-    }
-
-    public static String getDB() {
-        return DB;
-    }
-    
-    
 }
