@@ -5,12 +5,64 @@
  */
 package loan;
 
+import copy.Copy;
 import entity.Entity;
+import java.time.LocalDate;
+import librarian.Librarian;
+import reader.Reader;
 
 /**
  *
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
 public class Loan extends Entity{
+    private LocalDate dataDoEmprestimo;
+    private LocalDate dataDaDevolução;
+    private final Copy[] copies = new Copy[3];
+    private Librarian librarian;
+    private Reader reader;
+
+    public Loan() {
+    }
+
+    public Loan(LocalDate dataDoEmprestimo, LocalDate dataDaDevolução, Librarian librarian, Reader reader) {
+        this.dataDoEmprestimo = dataDoEmprestimo;
+        this.dataDaDevolução = dataDaDevolução;
+        this.librarian = librarian;
+        this.reader = reader;
+    }
+
+    public LocalDate getDataDoEmprestimo() {
+        return dataDoEmprestimo;
+    }
+
+    public void setDataDoEmprestimo(LocalDate dataDoEmprestimo) {
+        this.dataDoEmprestimo = dataDoEmprestimo;
+    }
+
+    public LocalDate getDataDaDevolução() {
+        return dataDaDevolução;
+    }
+
+    public void setDataDaDevolução(LocalDate dataDaDevolução) {
+        this.dataDaDevolução = dataDaDevolução;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
+    }
+
+    public Reader getReader() {
+        return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
+    }
+    
     
 }

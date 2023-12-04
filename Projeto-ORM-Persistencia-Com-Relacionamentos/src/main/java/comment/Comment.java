@@ -6,6 +6,7 @@
 package comment;
 
 import entity.Entity;
+import reader.Reader;
 
 /**
  *
@@ -13,5 +14,29 @@ import entity.Entity;
  */
 public class Comment extends Entity{
     private String comment;
-    
+    private Reader reader;
+
+    public Comment() {
+    }
+
+    public Comment(String comment, Reader reader) {
+        this.comment = comment;
+        this.reader = reader;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Reader getReader() {
+        return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
+    }
 }

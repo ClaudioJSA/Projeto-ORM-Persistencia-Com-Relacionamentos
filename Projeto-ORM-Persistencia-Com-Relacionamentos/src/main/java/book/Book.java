@@ -6,7 +6,6 @@
 package book;
 
 import entity.Entity;
-import java.time.LocalDate;
 
 /**
  *
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 public class Book extends Entity{
     private String title;
     private String authors;
-    private LocalDate acquisition;
     private Short pages;
     private Short year;
     private Byte edition;
@@ -43,16 +41,6 @@ public class Book extends Entity{
         this.authors = authors;
     }
 
-    public LocalDate getAcquisition() {
-        return acquisition;
-    }
-
-    public void setAcquisition(LocalDate acquisition) throws Exception {
-        if(acquisition.isAfter(LocalDate.now())){
-            throw new Exception("A data de aquisição não pode ser depois da data atual.");
-        }
-        this.acquisition = acquisition;
-    }
 
     public Short getPages() {
         return pages;
@@ -90,5 +78,5 @@ public class Book extends Entity{
 
     @Override
     public String toString() {
-        return "Book{" + "title=" + title + ", authors=" + authors + ", acquisition=" + acquisition + ", pages=" + pages + ", year=" + year + ", edition=" + edition}';
+        return "Book{" + "title=" + title + ", authors=" + authors + ", pages=" + pages + ", year=" + year + ", edition=" + edition}';
     }

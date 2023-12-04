@@ -24,22 +24,22 @@ public class BookDao extends Dao<Book>{
     
     @Override
     public String getSaveStatement() {
-        return "INSERT INTO " + TABLE + "(title, authors, acquisition, pages, year, edition) VALUES (?, ?, ?, ?, ?, ?)";
+        return "INSERT INTO " + TABLE + "(title, authors, pages, year, edition) VALUES (?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatement() {
-        return "UPDATE " + TABLE + " SET title = ?, authors = ?, acquisition = ?, pages = ?, year = ?, edition = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET title = ?, authors = ?, pages = ?, year = ?, edition = ? WHERE id = ?";
     }
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT title, authors, acquisition, pages, year, edition FROM " + TABLE + " WHERE id = ?";
+        return "SELECT title, authors, pages, year, edition FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT title, authors, acquisition, pages, year, edition FROM " + TABLE;
+        return "SELECT title, authors, pages, year, edition FROM " + TABLE;
     }
 
     @Override
@@ -52,7 +52,6 @@ public class BookDao extends Dao<Book>{
         try {
             pstmt.setString(1, e.getTitle());
             pstmt.setString(2, e.getAuthors());
-            pstmt.setDate(3, Date.valueOf(e.getAcquisition()));
             pstmt.setShort(4, e.getPages());
             pstmt.setShort(5, e.getYear());
             pstmt.setByte(6, e.getEdition());
@@ -70,7 +69,6 @@ public class BookDao extends Dao<Book>{
         try{
             book.setTitle(rs.getString("title"));
             book.setAuthors(rs.getString("authors"));
-            book.setAcquisition(rs.getDate("acquisition").toLocalDate());
             book.setPages(rs.getShort("pages"));
             book.setYear(rs.getShort("year"));
             book.setEdition(rs.getByte("edition"));
@@ -88,7 +86,6 @@ public class BookDao extends Dao<Book>{
                 Book book = new Book();
                 book.setTitle(rs.getString("title"));
                 book.setAuthors(rs.getString("authors"));
-                book.setAcquisition(rs.getDate("acquisition").toLocalDate());
                 book.setPages(rs.getShort("pages"));
                 book.setYear(rs.getShort("year"));
                 book.setEdition(rs.getByte("edition"));
