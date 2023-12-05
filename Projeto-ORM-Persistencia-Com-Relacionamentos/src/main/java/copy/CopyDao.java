@@ -5,9 +5,14 @@
  */
 package copy;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import repository.Dao;
 
 /**
@@ -15,45 +20,75 @@ import repository.Dao;
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
 public class CopyDao extends Dao<Copy>{
+    public final String TABLE = "copy";
 
     @Override
     public String getSaveStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "INSERT INTO " + TABLE + "(available, conditionn, acquisition, id) VALUES (?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "UPDATE " + TABLE + " SET available = ?, conditionn = ?, acquisition = ? WHERE id = ?";
     }
 
     @Override
     public String getFindByIdStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT available, conditionn, acquisition FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT available, conditionn, acquisition FROM " + TABLE;
     }
 
     @Override
     public String getDeleteStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "DELETE FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public void coposeSaveOrUpdateStatement(PreparedStatement pstmt, Copy e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            pstmt.setBoolean(1, e.isAvailable());
+            pstmt.setString(2, e.getCondition());
+            pstmt.setDate(3, Date.valueOf(e.getAcquisition()));
+            if (e.getId() != null) {
+                pstmt.setLong(4, e.getId());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CopyDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Copy extractObject(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Copy copy = new Copy();
+        try{
+            copy.setAvailable(rs.getBoolean("available"));
+            copy.setCondition(rs.getString("conditionn"));
+            copy.setAcquisition(rs.getDate("acquisition").toLocalDate());
+        }catch(Exception ex){
+                System.out.println("Ex: " + ex);      
+        }
+        return copy;
     }
 
     @Override
     public List<Copy> extractObjects(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Copy> copies = new ArrayList<>();
+        try{
+            while(rs.next()){
+                Copy copy = new Copy();
+                copy.setAvailable(rs.getBoolean("available"));
+                copy.setCondition(rs.getString("conditionn"));
+                copy.setAcquisition(rs.getDate("acquisition").toLocalDate());                
+                copies.add(copy);
+            }
+        }catch(Exception ex){
+                System.out.println("Ex: " + ex);      
+        }   
+        return copies;
     }
     
 }

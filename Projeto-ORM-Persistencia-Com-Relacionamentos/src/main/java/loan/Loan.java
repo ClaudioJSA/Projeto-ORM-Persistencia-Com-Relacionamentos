@@ -63,6 +63,10 @@ public class Loan extends Entity{
     public void setReader(Reader reader) {
         this.reader = reader;
     }
+
+    public Copy[] getCopies() {
+        return copies;
+    }
     
     
 }
