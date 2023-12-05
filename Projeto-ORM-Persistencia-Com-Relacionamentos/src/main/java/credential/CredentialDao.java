@@ -40,12 +40,12 @@ public class CredentialDao extends Dao<Credential>{
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT username, email, birthDate, user FROM " + TABLE + " WHERE id = ?";
+        return "SELECT username, password, lastaccess, enabled, user FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT username, email, birthDate, user FROM " + TABLE;
+        return "SELECT username, password, lastaccess, enabled, user FROM " + TABLE;
     }
 
     @Override
