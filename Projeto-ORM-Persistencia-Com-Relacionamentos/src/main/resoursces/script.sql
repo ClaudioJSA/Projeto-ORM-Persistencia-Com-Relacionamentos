@@ -47,8 +47,54 @@ CREATE TABLE librarian(
     id BIGINT PRIMARY KEY
 );
 
+CREATE TABLE admin(
+    id BIGINT PRIMARY KEY
+);
+
+CREATE TABLE book(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(150) NOT NULL,
+    authors VARCHAR(250) NOT NULL,
+    pages SMALLINT,
+    year SMALLINT NOT NULL,
+    edition TINYINT
+);
+
+CREATE TABLE copy(
+    id BIGINT PRIMARY KEY,
+    available  BOOLEAN,
+    conditionn VARCHAR(150),
+    acquisition DATE
+);
+
+CREATE TABLE comment(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    comment VARCHAR(500),
+    idreader BIGINT    
+);
+
+CREATE TABLE loan(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    dataDoEmprestimo DATE,
+    dataDaDevolução DATE,
+    idlibrarian BIGINT,
+    idreader BIGINT
+);
+
+CREATE TABLE copies(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    idloan BIGINT,
+    idcopy BIGINT
+);
+
 ALTER TABLE credential ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE user ADD FOREIGN KEY (role) REFERENCES role(id);
 ALTER TABLE reader ADD FOREIGN KEY (id) REFERENCES user(id);
 ALTER TABLE librarian ADD FOREIGN KEY (id) REFERENCES user(id);
-
+ALTER TABLE admin ADD FOREIGN KEY (id) REFERENCES user(id);
+ALTER TABLE copy ADD FOREIGN KEY (id) REFERENCES book(id);
+ALTER TABLE comment ADD FOREIGN KEY (idreader) REFERENCES reader(id);
+ALTER TABLE loan ADD FOREIGN KEY (idreader) REFERENCES reader(id);
+ALTER TABLE loan ADD FOREIGN KEY (idlibrarian) REFERENCES librarian(id);
+ALTER TABLE copies ADD FOREIGN KEY (idloan) REFERENCES loan(id);
+ALTER TABLE copies ADD FOREIGN KEY (idcopy) REFERENCES copy(id);
