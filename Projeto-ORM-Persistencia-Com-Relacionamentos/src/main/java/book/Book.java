@@ -24,7 +24,7 @@ public class Book extends Entity{
     }
 
     public void setTitle(String title) throws Exception{
-        if(title.length() > 150 || title == null){
+        if(title.length() > 150){
             throw new Exception("O titulo não pode ter mais de 150 digitos ou ser nulo");
         }
         this.title = title;
@@ -35,7 +35,7 @@ public class Book extends Entity{
     }
 
     public void setAuthors(String authors) throws Exception {
-        if(authors.length() > 250 || authors == null){
+        if(authors.length() > 250){
             throw new Exception("Os autores não podem ter mais de 250 caracteres ou ser nulo.");
         }
         this.authors = authors;
