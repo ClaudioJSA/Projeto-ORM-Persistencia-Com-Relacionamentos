@@ -24,12 +24,12 @@ public class CopyDao extends Dao<Copy>{
 
     @Override
     public String getSaveStatement() {
-        return "INSERT INTO " + TABLE + "(available, conditionn, acquisition, id) VALUES (?, ?, ?, ?)";
+        return "INSERT INTO " + TABLE + "(available, conditionn, acquisition, idbook) VALUES (?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatement() {
-        return "UPDATE " + TABLE + " SET available = ?, conditionn = ?, acquisition = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " available = ?, conditionn = ?, acquisition = ?, idbook = ? WHERE id = ?;";
     }
 
     @Override
@@ -53,6 +53,7 @@ public class CopyDao extends Dao<Copy>{
             pstmt.setBoolean(1, e.isAvailable());
             pstmt.setString(2, e.getCondition());
             pstmt.setDate(3, Date.valueOf(e.getAcquisition()));
+            pstmt.setLong(4, e.getBook().getId());
             if (e.getId() != null) {
                 pstmt.setLong(4, e.getId());
             }

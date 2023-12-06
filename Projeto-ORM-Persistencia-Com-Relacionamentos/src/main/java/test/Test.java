@@ -31,7 +31,6 @@ public class Test {
         try{
             Credential credential = new Credential();
             Librarian librarian = new Librarian();
-            ///Inserirndo dados no banco
             ///Carregando dados da credencial
             credential.setUsername("usertesttg5j");
             credential.setPassword("123456");

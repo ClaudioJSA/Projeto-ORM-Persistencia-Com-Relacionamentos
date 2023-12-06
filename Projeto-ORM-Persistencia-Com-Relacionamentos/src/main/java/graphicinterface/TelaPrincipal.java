@@ -30,6 +30,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.loginScreen = loginScreen;
     }
+    public javax.swing.JPanel getPrincipalPnl(){
+        return pnlTelaPrincipal;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -215,7 +218,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        CadastrarAtualizarExemplar cadastrarAtualizarExemplar = CadastrarAtualizarExemplar.getInstance(this);
+        pnlTelaPrincipal.add(cadastrarAtualizarExemplar);
+        cadastrarAtualizarExemplar.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void mnuPrincipalCadLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadLeitorActionPerformed

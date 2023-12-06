@@ -61,10 +61,11 @@ CREATE TABLE book(
 );
 
 CREATE TABLE copy(
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     available  BOOLEAN,
     conditionn VARCHAR(150),
-    acquisition DATE
+    acquisition DATE,
+    idbook BIGINT
 );
 
 CREATE TABLE comment(
@@ -92,7 +93,7 @@ ALTER TABLE user ADD FOREIGN KEY (role) REFERENCES role(id);
 ALTER TABLE reader ADD FOREIGN KEY (id) REFERENCES user(id);
 ALTER TABLE librarian ADD FOREIGN KEY (id) REFERENCES user(id);
 ALTER TABLE admin ADD FOREIGN KEY (id) REFERENCES user(id);
-ALTER TABLE copy ADD FOREIGN KEY (id) REFERENCES book(id);
+ALTER TABLE copy ADD FOREIGN KEY (idbook) REFERENCES book(id);
 ALTER TABLE comment ADD FOREIGN KEY (idreader) REFERENCES reader(id);
 ALTER TABLE loan ADD FOREIGN KEY (idreader) REFERENCES reader(id);
 ALTER TABLE loan ADD FOREIGN KEY (idlibrarian) REFERENCES librarian(id);

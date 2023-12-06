@@ -38,7 +38,7 @@ public class BookDao extends Dao<Book>{
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT title, authors, pages, year, edition FROM " + TABLE;
+        return "SELECT id, title, authors, pages, year, edition FROM " + TABLE;
     }
 
     @Override
@@ -51,11 +51,11 @@ public class BookDao extends Dao<Book>{
         try {
             pstmt.setString(1, e.getTitle());
             pstmt.setString(2, e.getAuthors());
-            pstmt.setShort(4, e.getPages());
-            pstmt.setShort(5, e.getYear());
-            pstmt.setByte(6, e.getEdition());
+            pstmt.setShort(3, e.getPages());
+            pstmt.setShort(4, e.getYear());
+            pstmt.setByte(5, e.getEdition());
             if (e.getId() != null) {
-                pstmt.setLong(8, e.getId());
+                pstmt.setLong(6, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,6 +83,7 @@ public class BookDao extends Dao<Book>{
         try{
             while(rs.next()){
                 Book book = new Book();
+                book.setId(rs.getLong("id"));
                 book.setTitle(rs.getString("title"));
                 book.setAuthors(rs.getString("authors"));
                 book.setPages(rs.getShort("pages"));

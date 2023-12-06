@@ -5,8 +5,21 @@
  */
 package graphicinterface;
 
+import credential.Credential;
+import credential.CredentialDao;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.text.MaskFormatter;
+import librarian.Librarian;
+import librarian.LibrarianDao;
+import reader.Reader;
+import reader.ReaderDao;
+import role.Role;
+import role.RoleDao;
+import user.UserDao;
 
 /**
  *
@@ -20,6 +33,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
     MaskFormatter mfdata;
     MaskFormatter mftelefone;
     private static CadastrarAtualizarUser instancia;
+    int type;
     
     private CadastrarAtualizarUser() {
         try {
@@ -46,11 +60,13 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                 lblCadastroTitulo.setText("CADASTRAR LEITOR");
                 txtCadastrarMatricula.setEnabled(false);
                 setTitle("Cadastrar Leitor");
+                this.type = type;
                 break;
             case 1:
                 lblCadastroTitulo.setText("CADASTRAR BIBLIOTECARIO");
                 txtCadastrarDocumento.setEnabled(false);
                 setTitle("Cadastrar Bibliotecario");
+                this.type = type;
                 break;
         }
     }
@@ -310,7 +326,79 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarCancelarActionPerformed
 
     private void btnCadastrarSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalvarActionPerformed
+        Credential credential = new Credential();
+        try {
+            credential.setUsername(txtCadastrarNomeDeUsuario.getText());
+            credential.setPassword(String.valueOf(pwdCadastrarSenha.getPassword()));
+            credential.setLastAccess(LocalDate.of(0000, 1, 1));
+            credential.setEnabled(true);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        switch(type){
+            case 0:
+                Reader reader = new Reader();
+                try {
+                    reader.setCredential(credential);
+                    reader.setName(txtCadastrarNome.getText());
+                    reader.setEmail(txtCadastrarEmail.getText());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    reader.setBirthDate(LocalDate.parse(txtCadastrarData.getText(), formatter));
+                    reader.setRole(new Role("Leitor"));
+                    reader.getRole().setId(new RoleDao().saveOrUpdate(reader.getRole()));
+                } catch (Exception ex) {
+                    Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                credential.setUser(reader);
+                reader.setCredential(credential);
+                credential.setId(new CredentialDao().saveOrUpdate(credential));
+                if(credential.getId() != 0){
+                    reader.setId(new UserDao().saveOrUpdate(reader));
+                    ///Atualizando a referencia de librarian em credencial no banco
+                    new CredentialDao().saveOrUpdate(credential);
+                    ///Adicionando User na tabela reader
+                    new ReaderDao().saveOrUpdate(reader);
+                }
+                if(credential.getId() != null && credential.getId() != 0 
+                        && reader.getId() != null && reader.getId() != 0){
+                    btnCadastrarSalvar.setEnabled(false);
+                    btnCadastrarCancelar.setText("Sair");
+                }
+                break;
+            case 1:
+                Librarian librarian = new Librarian();
+                try {
+                    librarian.setCredential(credential);
+                    librarian.setName(txtCadastrarNome.getText());
+                    librarian.setEmail(txtCadastrarEmail.getText());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    librarian.setBirthDate(LocalDate.parse(txtCadastrarData.getText(), formatter));
+                    librarian.setRole(new Role("Leitor"));
+                    librarian.getRole().setId(new RoleDao().saveOrUpdate(librarian.getRole()));
+                } catch (Exception ex) {
+                    Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                credential.setUser(librarian);
+                librarian.setCredential(credential);
+                credential.setId(new CredentialDao().saveOrUpdate(credential));
+                if(credential.getId() != 0){
+                    librarian.setId(new UserDao().saveOrUpdate(librarian));
+                    ///Atualizando a referencia de librarian em credencial no banco
+                    new CredentialDao().saveOrUpdate(credential);
+                    ///Adicionando User na tabela reader
+                    new LibrarianDao().saveOrUpdate(librarian);
+                    ///Resentando credencial e librarian
+                    System.out.println(">> Librarian: "+librarian);
+                    System.out.println(">> Credentcial: "+credential);
+                }
+                if(credential.getId() != null && credential.getId() != 0 
+                        && librarian.getId() != null && librarian.getId() != 0){
+                    btnCadastrarSalvar.setEnabled(false);
+                    btnCadastrarCancelar.setText("Sair");
+                }
+                break;
 
+        }
     }//GEN-LAST:event_btnCadastrarSalvarActionPerformed
 
     private void btnCadastrarSalvarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastrarSalvarKeyReleased

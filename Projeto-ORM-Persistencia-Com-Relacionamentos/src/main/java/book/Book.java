@@ -17,7 +17,19 @@ public class Book extends Entity{
     private Short pages;
     private Short year;
     private Byte edition;
+
+    public Book() {
+    }
+
+    public Book(String title, String authors, Short pages, Short year, Byte edition) {
+        this.title = title;
+        this.authors = authors;
+        this.pages = pages;
+        this.year = year;
+        this.edition = edition;
+    }
     
+
 ///<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public String getTitle() {
         return title;
@@ -69,7 +81,7 @@ public class Book extends Entity{
     }
 
     public void setEdition(Byte edition) throws Exception {
-        if(edition < 1 || edition == null){
+        if(edition < 1){
             throw new Exception("A edição não pode ser menor que 1 ou nula.");
         }
         this.edition = edition;
@@ -78,5 +90,7 @@ public class Book extends Entity{
 
     @Override
     public String toString() {
-        return "Book{" + "title=" + title + ", authors=" + authors + ", pages=" + pages + ", year=" + year + ", edition=" + edition}';
+        return "Book{" + "title=" + title + ", authors=" + authors + ", pages=" + pages + ", year=" + year + ", edition=" + edition + '}';
     }
+
+}

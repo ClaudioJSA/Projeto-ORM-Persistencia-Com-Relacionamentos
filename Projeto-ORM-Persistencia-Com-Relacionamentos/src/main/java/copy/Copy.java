@@ -6,24 +6,27 @@
 package copy;
 
 import book.Book;
+import entity.Entity;
 import java.time.LocalDate;
 
 /**
  *
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
-public class Copy extends Book{
+public class Copy extends Entity{
     private boolean available;
     private String condition;
     private LocalDate acquisition;
+    private Book book;
 
     public Copy() {
     }
 
-    public Copy(boolean available, String condition, LocalDate acquisition) {
+    public Copy(boolean available, String condition, LocalDate acquisition, Book book) {
         this.available = available;
         this.condition = condition;
         this.acquisition = acquisition;
+        this.book = book;
     }
 
     public boolean isAvailable() {
@@ -52,6 +55,16 @@ public class Copy extends Book{
         }
         this.acquisition = acquisition;
     }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+    
+    
     
     
 }
