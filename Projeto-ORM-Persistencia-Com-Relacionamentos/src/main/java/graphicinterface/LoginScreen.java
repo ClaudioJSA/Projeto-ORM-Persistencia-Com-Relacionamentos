@@ -187,7 +187,9 @@ public class LoginScreen extends javax.swing.JFrame {
         credential.setUser(credentialDao.authenticate(credential));
         if(credential.getUser() != null){
             setVisible(false);
-            new TelaPrincipal(credential.getUser(), this).setVisible(true);
+            TelaPrincipal telaprincipal = new TelaPrincipal(credential.getUser(), this);
+            telaprincipal.setVisible(true);
+            telaprincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
         }
         else{
             new ErrorScreen(this, 0).setVisible(true);

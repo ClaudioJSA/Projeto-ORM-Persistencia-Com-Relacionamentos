@@ -53,7 +53,6 @@ public class ErrorScreen extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(204, 204, 204));
         setName("ErrorScreen"); // NOI18N
-        setUndecorated(true);
         setResizable(false);
 
         lblErrorScreen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

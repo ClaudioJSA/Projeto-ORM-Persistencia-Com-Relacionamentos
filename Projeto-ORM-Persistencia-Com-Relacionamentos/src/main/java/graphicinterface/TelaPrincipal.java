@@ -5,7 +5,7 @@
  */
 package graphicinterface;
 
-import java.awt.BorderLayout;
+import javax.swing.JFrame;
 import user.User;
 
 /**
@@ -18,9 +18,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
-        
         initComponents();
         setLocationRelativeTo(null);
+        
     }
     
     LoginScreen loginScreen;
@@ -99,6 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
+        setName("tlPrincipal"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -131,6 +132,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         jMenuItem3.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\bibli.png")); // NOI18N
         jMenuItem3.setText("Cadastrar bibliotecário");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
@@ -214,12 +220,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void mnuPrincipalCadLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadLeitorActionPerformed
         CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(0);
-        cadastrarAtualizarUser.setTitle("Cadastrar Leitor");
         pnlTelaPrincipal.add(cadastrarAtualizarUser);
-        
         cadastrarAtualizarUser.setVisible(true);
         
     }//GEN-LAST:event_mnuPrincipalCadLeitorActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(1);
+        pnlTelaPrincipal.add(cadastrarAtualizarUser);
+        cadastrarAtualizarUser.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     
 

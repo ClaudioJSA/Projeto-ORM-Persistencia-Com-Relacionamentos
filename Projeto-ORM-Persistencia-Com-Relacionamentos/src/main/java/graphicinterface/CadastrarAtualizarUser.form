@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Cadastrar/Atualizar"/>
+    <Property name="name" type="java.lang.String" value="tlCadUpUser" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -27,22 +28,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
-                      <Component id="btnCadastrarCancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnCadastrarSalvar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtCadastrarConfirmarSenha" alignment="1" min="-2" pref="491" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblCadastroConfirmarSenha" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCadastrarNome" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lblCadastroLogo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblCadastroTitulo" min="-2" pref="335" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lblCadastroConfirmarSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCadastrarNome" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtCadastrarEmail" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -56,10 +54,10 @@
                                           <Component id="lblCadastroTelefone" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="txtCadastrarTelefone" max="32767" attributes="0"/>
+                                      <Component id="txtCadastrarTelefone" pref="322" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="lblCadastroNome" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCadastroNome" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblCadastroEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblCadastroMatricula" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCadastrarDocumento" alignment="0" max="32767" attributes="0"/>
@@ -68,14 +66,16 @@
                               <Component id="lblCadastroNomeDeUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblCadastroSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCadastrarNomeDeUsuario" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtCadastrarSenha" alignment="0" min="-2" pref="491" max="-2" attributes="0"/>
+                              <Component id="pwdCadastrarSenha" max="32767" attributes="0"/>
+                              <Component id="pwdCadastrarConfSenha" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblCadastroLogo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblCadastroTitulo" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnCadastrarCancelar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnCadastrarSalvar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -132,12 +132,12 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblCadastroSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Component id="txtCadastrarSenha" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="pwdCadastrarSenha" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblCadastroConfirmarSenha" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Component id="txtCadastrarConfirmarSenha" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="pwdCadastrarConfSenha" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCadastrarCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCadastrarSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -200,8 +200,6 @@
         <Property name="text" type="java.lang.String" value="Nome de Usu&#xe1;rio:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCadastrarSenha">
-    </Component>
     <Component class="javax.swing.JLabel" name="lblCadastroSenha">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -218,17 +216,22 @@
         <Property name="text" type="java.lang.String" value="Confirma&#xe7;&#xe3;o da senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCadastrarConfirmarSenha">
-    </Component>
     <Component class="javax.swing.JButton" name="btnCadastrarSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarSalvarActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnCadastrarSalvarKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrarCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCadastroTitulo">
       <Properties>
@@ -257,6 +260,9 @@
     <Component class="javax.swing.JTextField" name="txtCadastrarNomeDeUsuario">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtCadastrarTelefone">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mftelefone);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCadastroMatricula">
       <Properties>
@@ -291,6 +297,10 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Credencial"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="pwdCadastrarSenha">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="pwdCadastrarConfSenha">
     </Component>
   </SubComponents>
 </Form>
