@@ -5,9 +5,6 @@
  */
 package librarian;
 
-import credential.Credential;
-import java.time.LocalDate;
-import role.Role;
 import user.User;
 
 /**

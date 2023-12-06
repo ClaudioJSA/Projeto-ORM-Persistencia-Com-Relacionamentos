@@ -6,8 +6,6 @@ package graphicinterface;
 
 import credential.Credential;
 import credential.CredentialDao;
-import java.awt.Color;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
 import user.User;
 

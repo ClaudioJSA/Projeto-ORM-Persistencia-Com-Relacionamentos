@@ -5,6 +5,7 @@
  */
 package graphicinterface;
 
+import java.awt.BorderLayout;
 import user.User;
 
 /**
@@ -52,25 +53,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu9 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 32767));
-        jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jMenu21 = new javax.swing.JMenu();
+        pnlTelaPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnuPrincipalCadLeitor = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        jMenu19 = new javax.swing.JMenu();
+        jMenu20 = new javax.swing.JMenu();
+        jMenu22 = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -96,6 +95,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu10.setText("Edit");
         jMenuBar5.add(jMenu10);
 
+        jMenu21.setText("jMenu21");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -104,199 +105,83 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Aluno");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jButton7.setText("Bibliotecario");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setText("ADM");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\LogoBiblio_resized-4_resized.png")); // NOI18N
-
-        jButton9.setText("Sair");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Área do aluno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 204))); // NOI18N
-        jPanel2.setForeground(new java.awt.Color(0, 153, 204));
-        jPanel2.setToolTipText("");
-
-        jButton3.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\relatorio-de-negocios_resized.png")); // NOI18N
-        jButton3.setText("Gerar Relátorios");
-
-        jButton2.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\statistics_resized.png")); // NOI18N
-        jButton2.setText("Visualizar historico ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\e-book-3_resized.png")); // NOI18N
-        jButton1.setText("Novo emprestimo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(77, 77, 77)
-                .addComponent(jButton3)
-                .addGap(20, 20, 20))
+        javax.swing.GroupLayout pnlTelaPrincipalLayout = new javax.swing.GroupLayout(pnlTelaPrincipal);
+        pnlTelaPrincipal.setLayout(pnlTelaPrincipalLayout);
+        pnlTelaPrincipalLayout.setHorizontalGroup(
+            pnlTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 787, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
-                .addGap(12, 12, 12))
+        pnlTelaPrincipalLayout.setVerticalGroup(
+            pnlTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Área Restrita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 204))); // NOI18N
+        jMenu1.setText("Cadastrar");
 
-        jButton4.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\aluno_resized.png")); // NOI18N
-        jButton4.setText("Adicionar Estudante");
-
-        jButton5.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\e-book-4_resized.png")); // NOI18N
-        jButton5.setText("Adicionar Livro");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        mnuPrincipalCadLeitor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        mnuPrincipalCadLeitor.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\4213477.png")); // NOI18N
+        mnuPrincipalCadLeitor.setText("Cadastrar leitor");
+        mnuPrincipalCadLeitor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                mnuPrincipalCadLeitorActionPerformed(evt);
             }
         });
+        jMenu1.add(mnuPrincipalCadLeitor);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(53, 53, 53))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap())
-        );
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\bibli.png")); // NOI18N
+        jMenuItem3.setText("Cadastrar bibliotecário");
+        jMenu1.add(jMenuItem3);
 
-        jLabel3.setText("Teste");
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\e-book-4_resized.png")); // NOI18N
+        jMenuItem4.setText("Cadastrar exemplar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
 
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(filler1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(207, 207, 207)
-                        .addComponent(jButton9))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton7)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton8)))
-                .addGap(33, 33, 33))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(49, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton7)
-                            .addComponent(jButton8)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jLabel3))
-                .addGap(32, 32, 32))
-        );
-
-        jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Exibir");
+
+        jMenuItem5.setText("Exibir livros");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("Exibir leitores");
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("Exibir bibliotecarios");
+        jMenu2.add(jMenuItem7);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu11.setText("Emprestimo");
+
+        jMenu19.setText("Novo");
+        jMenu11.add(jMenu19);
+
+        jMenu20.setText("Devolver");
+        jMenu11.add(jMenu20);
+
+        jMenu22.setText("Autorizar");
+        jMenu11.add(jMenu22);
+
+        jMenuBar1.add(jMenu11);
+
+        jMenu12.setText("Relatorio");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenu12.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu12);
 
         setJMenuBar(jMenuBar1);
 
@@ -304,11 +189,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(pnlTelaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(pnlTelaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -319,54 +204,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void mnuPrincipalCadLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadLeitorActionPerformed
+        CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(0);
+        cadastrarAtualizarUser.setTitle("Cadastrar Leitor");
+        pnlTelaPrincipal.add(cadastrarAtualizarUser);
+        
+        cadastrarAtualizarUser.setVisible(true);
+        
+    }//GEN-LAST:event_mnuPrincipalCadLeitorActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu20;
+    private javax.swing.JMenu jMenu21;
+    private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -379,8 +245,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JMenuItem mnuPrincipalCadLeitor;
+    private javax.swing.JPanel pnlTelaPrincipal;
     // End of variables declaration//GEN-END:variables
 }
