@@ -51,7 +51,7 @@ public class LoginScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        lblLogin.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
+        lblLogin.setIcon(new javax.swing.ImageIcon("/Users/annekarolinneds/Documents/Projeto-ORM-Persistencia-Com-Relacionamentos/Projeto-ORM-Persistencia-Com-Relacionamentos/src/main/java/graphicinterface/LogoBiblio_resized-4.png")); // NOI18N
         lblLogin.setVerifyInputWhenFocusTarget(false);
 
         lblUsuario.setText("Usuário:");
