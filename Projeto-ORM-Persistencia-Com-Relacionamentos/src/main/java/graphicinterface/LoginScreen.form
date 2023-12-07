@@ -107,8 +107,8 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblLogin">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Programas\Dev\netbeans\Projetos\Projeto Trabalho Final\Projeto-ORM-Persistencia-Com-Relacionamentos\Projeto-ORM-Persistencia-Com-Relacionamentos\src\main\resoursces\LogoBiblio_resized-4.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new ImageIcon(getClass().getResource(&quot;/logo.png&quot;))" type="code"/>
         </Property>
         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
       </Properties>

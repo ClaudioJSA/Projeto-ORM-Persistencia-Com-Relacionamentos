@@ -5,7 +5,7 @@
  */
 package graphicinterface;
 
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import user.User;
 
 /**
@@ -123,7 +123,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Cadastrar");
 
         mnuPrincipalCadLeitor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        mnuPrincipalCadLeitor.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\4213477.png")); // NOI18N
+        mnuPrincipalCadLeitor.setIcon(new ImageIcon(getClass().getResource("/aluno.png")));
         mnuPrincipalCadLeitor.setText("Cadastrar leitor");
         mnuPrincipalCadLeitor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +133,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(mnuPrincipalCadLeitor);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\bibli.png")); // NOI18N
+        jMenuItem3.setIcon(new ImageIcon(getClass().getResource("/bibli.png")));
         jMenuItem3.setText("Cadastrar bibliotecário");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +143,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\java\\graphicinterface\\e-book-4_resized.png")); // NOI18N
+        jMenuItem4.setIcon(new ImageIcon(getClass().getResource("/cadlivro.png")));
         jMenuItem4.setText("Cadastrar exemplar");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

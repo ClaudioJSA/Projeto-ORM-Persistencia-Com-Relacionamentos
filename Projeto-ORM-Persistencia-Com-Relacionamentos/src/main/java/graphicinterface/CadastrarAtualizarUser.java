@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.text.MaskFormatter;
 import librarian.Librarian;
 import librarian.LibrarianDao;
@@ -183,7 +184,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
         lblCadastroTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCadastroTitulo.setText("CADASTRO/ATUALIZAR");
 
-        lblCadastroLogo.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\cadastro.png")); // NOI18N
+        lblCadastroLogo.setIcon(new ImageIcon(getClass().getResource("/cadastro.png")));
 
         lblCadastroTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCadastroTelefone.setText("Telefone:");
@@ -205,15 +206,15 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCadastroLogo)
+                            .addGap(25, 25, 25)
+                            .addComponent(lblCadastroLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblCadastroTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
+                            .addGap(37, 37, 37)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(lblCadastroConfirmarSenha, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +242,8 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                                 .addComponent(txtCadastrarNomeDeUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(pwdCadastrarSenha)
                                 .addComponent(pwdCadastrarConfSenha))))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addComponent(btnCadastrarCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastrarSalvar)
@@ -253,12 +255,12 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lblCadastroLogo))
+                        .addGap(42, 42, 42)
+                        .addComponent(lblCadastroTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblCadastroTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
+                        .addComponent(lblCadastroLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCadastroNome)
@@ -302,7 +304,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrarCancelar)
                     .addComponent(btnCadastrarSalvar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();

@@ -97,8 +97,8 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Programas\Dev\netbeans\Projetos\Projeto Trabalho Final\Projeto-ORM-Persistencia-Com-Relacionamentos\Projeto-ORM-Persistencia-Com-Relacionamentos\src\main\resoursces\4213477.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/aluno.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar leitor"/>
               </Properties>
@@ -111,8 +111,8 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F2"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Programas\Dev\netbeans\Projetos\Projeto Trabalho Final\Projeto-ORM-Persistencia-Com-Relacionamentos\Projeto-ORM-Persistencia-Com-Relacionamentos\src\main\resoursces\bibli.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/bibli.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar bibliotec&#xe1;rio"/>
               </Properties>
@@ -125,8 +125,8 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F3"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Programas\Dev\netbeans\Projetos\Projeto Trabalho Final\Projeto-ORM-Persistencia-Com-Relacionamentos\Projeto-ORM-Persistencia-Com-Relacionamentos\src\main\java\graphicinterface\e-book-4_resized.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/cadlivro.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar exemplar"/>
               </Properties>

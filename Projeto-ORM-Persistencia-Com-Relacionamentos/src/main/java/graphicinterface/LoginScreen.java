@@ -6,6 +6,7 @@ package graphicinterface;
 
 import credential.Credential;
 import credential.CredentialDao;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import user.User;
 
@@ -50,7 +51,7 @@ public class LoginScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        lblLogin.setIcon(new javax.swing.ImageIcon("D:\\Programas\\Dev\\netbeans\\Projetos\\Projeto Trabalho Final\\Projeto-ORM-Persistencia-Com-Relacionamentos\\Projeto-ORM-Persistencia-Com-Relacionamentos\\src\\main\\resoursces\\LogoBiblio_resized-4.png")); // NOI18N
+        lblLogin.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
         lblLogin.setVerifyInputWhenFocusTarget(false);
 
         lblUsuario.setText("Usuário:");
