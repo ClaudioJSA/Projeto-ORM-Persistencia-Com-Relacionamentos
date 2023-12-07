@@ -14,7 +14,5 @@ import javax.swing.JFrame;
  */
 public class ProjetoORMPersistenciaComRelacionamentos {
 
-    public static void main(String[] args) {
-        
-    }
+    
 }
