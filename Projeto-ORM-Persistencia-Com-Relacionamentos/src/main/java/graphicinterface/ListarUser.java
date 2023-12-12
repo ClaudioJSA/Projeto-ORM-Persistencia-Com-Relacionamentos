@@ -5,6 +5,8 @@
  */
 package graphicinterface;
 
+import admin.Admin;
+import admin.AdminDao;
 import credential.CredentialDao;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -25,6 +27,7 @@ public class ListarUser extends javax.swing.JInternalFrame {
     private static ListarUser instancia;
     private List<Reader> readers;
     private List<Librarian> librarians;
+    private List<Admin> admins;
     DefaultTableModel model;
     boolean fill = false;
     int selectedUser;
@@ -196,6 +199,23 @@ public class ListarUser extends javax.swing.JInternalFrame {
                     } 
                 }
                 break;
+            case 2:
+                for(Admin admin : admins){
+                    if(admin.getCredentical().getUsername().equals(txtListarUserProcurar.getText())){
+                        model.setNumRows(0);
+                        model.addRow(new Object[]{
+                            admin.getCredentical().getUsername(),
+                            admin.getName(),
+                            admin.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                            admin.getEmail()
+                        });
+                        selectedUser = admins.indexOf(admin);
+                    }
+                    if(txtListarUserProcurar.getText().trim().isEmpty()){
+                        loadTable();
+                    } 
+                }
+                break;
         }
     }//GEN-LAST:event_btnListarUserProcurarActionPerformed
 
@@ -213,11 +233,17 @@ public class ListarUser extends javax.swing.JInternalFrame {
                 else 
                     cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(0, (Object) readers.get(selectedUser));
                 break;
-            default:
+            case 1:
                 if(tblListarUser.getRowCount()!=1)
                     cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(1, (Object) librarians.get(tblListarUser.getSelectedRow()));
                 else 
                     cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(1, (Object) librarians.get(selectedUser));
+                break;
+            default:
+                if(tblListarUser.getRowCount()!=1)
+                    cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(2, (Object) admins.get(tblListarUser.getSelectedRow()));
+                else 
+                    cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(2, (Object) admins.get(selectedUser));
                 break;
         }
         telaprincipal.getPrincipalPnl().add(cadastrarAtualizarUser);
@@ -269,6 +295,28 @@ public class ListarUser extends javax.swing.JInternalFrame {
                         librarians.get(i).getName(),
                         librarians.get(i).getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                         librarians.get(i).getEmail()
+                    });
+                }
+                break;
+            case 2:
+                if(!fill)
+                    admins = new AdminDao().findAll();
+                model = (DefaultTableModel) tblListarUser.getModel();
+                model.setNumRows(0);
+                for(int i = 0; i<admins.size();i++){
+                    if(!fill){
+                        auxId = admins.get(i).getId();
+                        admins.set(i, new Admin(new UserDao().findById(admins.get(i).getId())));
+                        admins.get(i).setId(auxId);
+                        auxId = new CredentialDao().findIdbyUser(admins.get(i).getId());
+                        admins.get(i).setCredential(new CredentialDao().findById(auxId));
+                        admins.get(i).getCredentical().setId(auxId);
+                    }
+                    model.addRow(new Object[]{
+                        admins.get(i).getCredentical().getUsername(),
+                        admins.get(i).getName(),
+                        admins.get(i).getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        admins.get(i).getEmail()
                     });
                 }
                 break;

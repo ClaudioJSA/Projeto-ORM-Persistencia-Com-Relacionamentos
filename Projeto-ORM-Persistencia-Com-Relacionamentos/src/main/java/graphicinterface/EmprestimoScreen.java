@@ -18,7 +18,6 @@ import javax.swing.text.MaskFormatter;
 import librarian.Librarian;
 import loan.Loan;
 import loan.LoanDao;
-import reader.Reader;
 import reader.ReaderDao;
 import user.User;
 
@@ -101,7 +100,7 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         ckbEmprestimoScreeen = new javax.swing.JCheckBox();
         txtEmpresetimoScreenNacimento = new javax.swing.JFormattedTextField(mfdata);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
         jLabel1.setText("EMPRESTIMO");
@@ -161,6 +160,11 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         txtEmprestimoScreenProcurarLivro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtEmprestimoScreenProcurarLivroFocusLost(evt);
+            }
+        });
+        txtEmprestimoScreenProcurarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmprestimoScreenProcurarLivroActionPerformed(evt);
             }
         });
 
@@ -320,15 +324,20 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEmprestimoScreeenProcurarLivroActionPerformed
 
     private void btnEmprestimoScreeenEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimoScreeenEmprestarActionPerformed
+        Loan loan = new Loan();
+        loan.setReader(new ReaderDao().findById(credential.getUser().getId()));
+        loan.getReader().setId(credential.getUser().getId());
         if(tblEmprestimoScreeen.getSelectedRow() != -1){
-            Loan loan = new Loan();
-            loan.setReader(new Reader(credential.getUser()));
-            loan.setDataDoEmprestimo(LocalDate.now());
-            loan.setLibrarian(librarian);
-            loan.setCopy(copies.get(tblEmprestimoScreeen.getSelectedRow()));
-            loan.setId(new LoanDao().saveOrUpdate(loan));
-            copies.get(tblEmprestimoScreeen.getSelectedRow()).setAvailable(false);
-            new CopyDao().saveOrUpdate(copies.get(tblEmprestimoScreeen.getSelectedRow()));
+            if(loan.getReader().getQtdEmpretimos() < 3){
+                loan.getReader().setQtdEmpretimos(loan.getReader().getQtdEmpretimos()+1);
+                loan.setDataDoEmprestimo(LocalDate.now());
+                loan.setLibrarian(librarian);
+                loan.setCopy(copies.get(tblEmprestimoScreeen.getSelectedRow()));
+                loan.setId(new LoanDao().saveOrUpdate(loan));
+                copies.get(tblEmprestimoScreeen.getSelectedRow()).setAvailable(false);
+                new CopyDao().saveOrUpdate(copies.get(tblEmprestimoScreeen.getSelectedRow()));
+                new ReaderDao().saveOrUpdate(loan.getReader());
+            }
             btnEmprestimoScreeenEmprestar.setEnabled(false);
             btnEmprestimoScreeenCancelar.setText("Sair");
         }
@@ -380,6 +389,10 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         dispose();
         instancia = null;
     }//GEN-LAST:event_btnEmprestimoScreeenCancelarActionPerformed
+
+    private void txtEmprestimoScreenProcurarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmprestimoScreenProcurarLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmprestimoScreenProcurarLivroActionPerformed
 
     private void loadTable(){
         if(!fill)

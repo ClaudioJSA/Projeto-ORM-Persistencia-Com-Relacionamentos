@@ -35,7 +35,7 @@ public class CopyDao extends Dao<Copy>{
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT available, conditionn, acquisition, idbook, FROM " + TABLE + " WHERE id = ?";
+        return "SELECT available, conditionn, acquisition, idbook, id FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override

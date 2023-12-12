@@ -12,7 +12,7 @@ import user.User;
  * @author annekarolinneds;
  */
 public class Reader extends User{
-    private int qtdEmpretimos;
+    private int qtdEmpretimos = 0;
     public Reader() {
     }
     
@@ -29,4 +29,14 @@ public class Reader extends User{
             System.out.println(ex);
         }
     }
+
+    public int getQtdEmpretimos() {
+        return qtdEmpretimos;
+    }
+
+    public void setQtdEmpretimos(int qtdEmpretimos) {
+        this.qtdEmpretimos = qtdEmpretimos;
+    }
+    
+    
 }

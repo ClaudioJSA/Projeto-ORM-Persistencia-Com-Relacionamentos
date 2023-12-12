@@ -7,6 +7,8 @@ package graphicinterface;
 
 import javax.swing.ImageIcon;
 import librarian.Librarian;
+import librarian.LibrarianDao;
+import reader.ReaderDao;
 import user.User;
 
 /**
@@ -31,6 +33,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.loginScreen = loginScreen;
         this.user = user;
+        if(new ReaderDao().findById(user.getId()) != null ){
+            mnuPrincipalCadBibli.setEnabled(false);
+            mnuPrincipalCadLeitor.setEnabled(false);
+            mnuPrincipalCadExemp.setEnabled(false);
+            mnuPrincipalEdtBibli.setEnabled(false);
+            mnuPrincipalEdtLeitor.setEnabled(false);
+            mnuPrincipalEmpNovo.setEnabled(false);
+            mnuPrincipalCadAdmin.setEnabled(false);
+        }
+        if(new LibrarianDao().findById(user.getId()) != null){
+            mnuPrincipalCadBibli.setEnabled(false);
+            mnuPrincipalCadLeitor.setEnabled(false);
+            mnuPrincipalEdtBibli.setEnabled(false);
+            mnuPrincipalEdtLeitor.setEnabled(false);
+            mnuPrincipalCadAdmin.setEnabled(false);
+        }
     }
     public javax.swing.JPanel getPrincipalPnl(){
         return pnlTelaPrincipal;
@@ -61,19 +79,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu21 = new javax.swing.JMenu();
         pnlTelaPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        Cadastrar = new javax.swing.JMenu();
         mnuPrincipalCadLeitor = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu13 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuPrincipalCadBibli = new javax.swing.JMenuItem();
+        mnuPrincipalCadAdmin = new javax.swing.JMenuItem();
+        mnuPrincipalCadExemp = new javax.swing.JMenuItem();
+        Editar = new javax.swing.JMenu();
+        mnuPrincipalEdtLeitor = new javax.swing.JMenuItem();
+        mnuPrincipalEdtBibli = new javax.swing.JMenuItem();
+        mnuPrincipalEdtAdmin = new javax.swing.JMenuItem();
+        mnuPrincipalEdtLivro = new javax.swing.JMenuItem();
+        mnuPrincipalEdtExemp = new javax.swing.JMenuItem();
+        Exibir = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu11 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        Emprestimo = new javax.swing.JMenu();
+        mnuPrincipalEmpNovo = new javax.swing.JMenuItem();
+        mnuPrincipalEmpDev = new javax.swing.JMenuItem();
+        mnuPrincipalEmpHist = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -123,7 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 464, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Cadastrar");
+        Cadastrar.setText("Cadastrar");
 
         mnuPrincipalCadLeitor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         mnuPrincipalCadLeitor.setIcon(new ImageIcon(getClass().getResource("/aluno.png")));
@@ -133,53 +157,79 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 mnuPrincipalCadLeitorActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuPrincipalCadLeitor);
+        Cadastrar.add(mnuPrincipalCadLeitor);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        jMenuItem3.setIcon(new ImageIcon(getClass().getResource("/bibli.png")));
-        jMenuItem3.setText("Cadastrar bibliotecário");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mnuPrincipalCadBibli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        mnuPrincipalCadBibli.setIcon(new ImageIcon(getClass().getResource("/bibli.png")));
+        mnuPrincipalCadBibli.setText("Cadastrar bibliotecário");
+        mnuPrincipalCadBibli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mnuPrincipalCadBibliActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        Cadastrar.add(mnuPrincipalCadBibli);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jMenuItem4.setIcon(new ImageIcon(getClass().getResource("/cadlivro.png")));
-        jMenuItem4.setText("Cadastrar exemplar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mnuPrincipalCadAdmin.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        mnuPrincipalCadAdmin.setText("Cadastrar administrador");
+        mnuPrincipalCadAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mnuPrincipalCadAdminActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        Cadastrar.add(mnuPrincipalCadAdmin);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu13.setText("Editar");
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        jMenuItem2.setText("Editar leitor");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnuPrincipalCadExemp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        mnuPrincipalCadExemp.setIcon(new ImageIcon(getClass().getResource("/cadlivro.png")));
+        mnuPrincipalCadExemp.setText("Cadastrar exemplar");
+        mnuPrincipalCadExemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnuPrincipalCadExempActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem2);
+        Cadastrar.add(mnuPrincipalCadExemp);
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem8.setText("Editar Bibliotecario");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(Cadastrar);
+
+        Editar.setText("Editar");
+
+        mnuPrincipalEdtLeitor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        mnuPrincipalEdtLeitor.setText("Editar leitor");
+        mnuPrincipalEdtLeitor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                mnuPrincipalEdtLeitorActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem8);
+        Editar.add(mnuPrincipalEdtLeitor);
 
-        jMenuBar1.add(jMenu13);
+        mnuPrincipalEdtBibli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        mnuPrincipalEdtBibli.setText("Editar bibliotecario");
+        mnuPrincipalEdtBibli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrincipalEdtBibliActionPerformed(evt);
+            }
+        });
+        Editar.add(mnuPrincipalEdtBibli);
 
-        jMenu2.setText("Exibir");
+        mnuPrincipalEdtAdmin.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        mnuPrincipalEdtAdmin.setText("Editar administrador");
+        mnuPrincipalEdtAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrincipalEdtAdminActionPerformed(evt);
+            }
+        });
+        Editar.add(mnuPrincipalEdtAdmin);
+
+        mnuPrincipalEdtLivro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
+        mnuPrincipalEdtLivro.setText("Editar livro");
+        Editar.add(mnuPrincipalEdtLivro);
+
+        mnuPrincipalEdtExemp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        mnuPrincipalEdtExemp.setText("Editar exemplar");
+        Editar.add(mnuPrincipalEdtExemp);
+
+        jMenuBar1.add(Editar);
+
+        Exibir.setText("Exibir");
 
         jMenuItem5.setText("Exibir livros");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -187,28 +237,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        Exibir.add(jMenuItem5);
 
         jMenuItem6.setText("Exibir leitores");
-        jMenu2.add(jMenuItem6);
+        Exibir.add(jMenuItem6);
 
         jMenuItem7.setText("Exibir bibliotecarios");
-        jMenu2.add(jMenuItem7);
+        Exibir.add(jMenuItem7);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(Exibir);
 
-        jMenu11.setText("Emprestimo");
+        Emprestimo.setText("Emprestimo");
 
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem9.setText("Novo");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        mnuPrincipalEmpNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuPrincipalEmpNovo.setText("Novo");
+        mnuPrincipalEmpNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                mnuPrincipalEmpNovoActionPerformed(evt);
             }
         });
-        jMenu11.add(jMenuItem9);
+        Emprestimo.add(mnuPrincipalEmpNovo);
 
-        jMenuBar1.add(jMenu11);
+        mnuPrincipalEmpDev.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuPrincipalEmpDev.setText("Devolver");
+        mnuPrincipalEmpDev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrincipalEmpDevActionPerformed(evt);
+            }
+        });
+        Emprestimo.add(mnuPrincipalEmpDev);
+
+        mnuPrincipalEmpHist.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuPrincipalEmpHist.setText("Ver historico");
+        mnuPrincipalEmpHist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrincipalEmpHistActionPerformed(evt);
+            }
+        });
+        Emprestimo.add(mnuPrincipalEmpHist);
+
+        jMenuBar1.add(Emprestimo);
 
         jMenu12.setText("Relatorio");
 
@@ -242,11 +310,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void mnuPrincipalCadExempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadExempActionPerformed
         CadastrarAtualizarExemplar cadastrarAtualizarExemplar = CadastrarAtualizarExemplar.getInstance(this);
         pnlTelaPrincipal.add(cadastrarAtualizarExemplar);
         cadastrarAtualizarExemplar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_mnuPrincipalCadExempActionPerformed
 
     private void mnuPrincipalCadLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadLeitorActionPerformed
         CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(0);
@@ -255,43 +323,70 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuPrincipalCadLeitorActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mnuPrincipalCadBibliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadBibliActionPerformed
         CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(1);
         pnlTelaPrincipal.add(cadastrarAtualizarUser);
         cadastrarAtualizarUser.setVisible(true);
         cadastrarAtualizarUser.toFront();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mnuPrincipalCadBibliActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnuPrincipalEdtLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEdtLeitorActionPerformed
         ListarUser listarUser = ListarUser.getInstance(0, this);
         pnlTelaPrincipal.add(listarUser);
         listarUser.setVisible(true);
         listarUser.toFront();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mnuPrincipalEdtLeitorActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void mnuPrincipalEdtBibliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEdtBibliActionPerformed
         ListarUser listarUser = ListarUser.getInstance(1, this);
         pnlTelaPrincipal.add(listarUser);
         listarUser.setVisible(true);
         listarUser.toFront();
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_mnuPrincipalEdtBibliActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void mnuPrincipalEmpNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEmpNovoActionPerformed
        EmprestimoScreen emprestimoScreen = EmprestimoScreen.getInstance(new Librarian(user));
        pnlTelaPrincipal.add(emprestimoScreen);
        emprestimoScreen.setVisible(true);
        emprestimoScreen.toFront();
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_mnuPrincipalEmpNovoActionPerformed
+
+    private void mnuPrincipalEmpHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEmpHistActionPerformed
+        LoanHistory loanHistory = LoanHistory.getInstace(user, 0);
+        pnlTelaPrincipal.add(loanHistory);
+        loanHistory.setVisible(true);
+        loanHistory.toFront();
+    }//GEN-LAST:event_mnuPrincipalEmpHistActionPerformed
+
+    private void mnuPrincipalCadAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadAdminActionPerformed
+        CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(2);
+        pnlTelaPrincipal.add(cadastrarAtualizarUser);
+        cadastrarAtualizarUser.setVisible(true);
+    }//GEN-LAST:event_mnuPrincipalCadAdminActionPerformed
+
+    private void mnuPrincipalEdtAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEdtAdminActionPerformed
+        ListarUser listarUser = ListarUser.getInstance(2, this);
+        pnlTelaPrincipal.add(listarUser);
+        listarUser.setVisible(true);
+        listarUser.toFront();
+    }//GEN-LAST:event_mnuPrincipalEdtAdminActionPerformed
+
+    private void mnuPrincipalEmpDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEmpDevActionPerformed
+        LoanHistory loanHistory = LoanHistory.getInstace(user, 1);
+        pnlTelaPrincipal.add(loanHistory);
+        loanHistory.setVisible(true);
+        loanHistory.toFront();
+    }//GEN-LAST:event_mnuPrincipalEmpDevActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu Cadastrar;
+    private javax.swing.JMenu Editar;
+    private javax.swing.JMenu Emprestimo;
+    private javax.swing.JMenu Exibir;
     private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu13;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu21;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -306,16 +401,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JMenuItem mnuPrincipalCadAdmin;
+    private javax.swing.JMenuItem mnuPrincipalCadBibli;
+    private javax.swing.JMenuItem mnuPrincipalCadExemp;
     private javax.swing.JMenuItem mnuPrincipalCadLeitor;
+    private javax.swing.JMenuItem mnuPrincipalEdtAdmin;
+    private javax.swing.JMenuItem mnuPrincipalEdtBibli;
+    private javax.swing.JMenuItem mnuPrincipalEdtExemp;
+    private javax.swing.JMenuItem mnuPrincipalEdtLeitor;
+    private javax.swing.JMenuItem mnuPrincipalEdtLivro;
+    private javax.swing.JMenuItem mnuPrincipalEmpDev;
+    private javax.swing.JMenuItem mnuPrincipalEmpHist;
+    private javax.swing.JMenuItem mnuPrincipalEmpNovo;
     private javax.swing.JPanel pnlTelaPrincipal;
     // End of variables declaration//GEN-END:variables
 }

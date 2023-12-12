@@ -32,17 +32,17 @@ public class LoanDao extends Dao<Loan>{
 
     @Override
     public String getUpdateStatement() {
-        return "UPDATE " + TABLE + " SET dataDoEmprestimo = ?, dataDaDevolução = ?, idlibrarian = ?, idreader = ? copy = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET dataDoEmprestimo = ?, dataDaDevolução = ?, idlibrarian = ?, idreader = ?, copy = ? WHERE id = ?";
     }
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy FROM " + TABLE + " WHERE id = ?";
+        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy, id FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy FROM " + TABLE;
+        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy, id FROM " + TABLE;
     }
 
     @Override
@@ -77,10 +77,12 @@ public class LoanDao extends Dao<Loan>{
             loan.setReader(new Reader());
             loan.setCopy(new Copy());
             loan.setDataDoEmprestimo(rs.getDate("dataDoEmprestimo").toLocalDate());
-            loan.setDataDaDevolução(rs.getDate("dataDaDevolução").toLocalDate());
+            if(rs.getDate("dataDaDevolução") != null)
+                loan.setDataDaDevolução(rs.getDate("dataDaDevolução").toLocalDate());
             loan.getLibrarian().setId(rs.getLong("idlibrarian"));
             loan.getReader().setId(rs.getLong("idreader"));
             loan.getCopy().setId(rs.getLong("copy"));
+            loan.setId(rs.getLong("id"));
         }catch(Exception ex){
                 System.out.println("Ex: " + ex);      
         }
@@ -97,10 +99,12 @@ public class LoanDao extends Dao<Loan>{
                 loan.setReader(new Reader());
                 loan.setCopy(new Copy());
                 loan.setDataDoEmprestimo(rs.getDate("dataDoEmprestimo").toLocalDate());
-                loan.setDataDaDevolução(rs.getDate("dataDaDevolução").toLocalDate());
+                if(rs.getDate("dataDaDevolução") != null)
+                    loan.setDataDaDevolução(rs.getDate("dataDaDevolução").toLocalDate());
                 loan.getLibrarian().setId(rs.getLong("idlibrarian"));
                 loan.getReader().setId(rs.getLong("idreader"));
                 loan.getCopy().setId(rs.getLong("copy"));
+                loan.setId(rs.getLong("id"));
                 loans.add(loan);
             }
         }catch(Exception ex){
