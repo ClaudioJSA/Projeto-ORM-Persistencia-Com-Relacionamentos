@@ -35,6 +35,8 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
     MaskFormatter mftelefone;
     private static CadastrarAtualizarUser instancia;
     int type;
+    Reader reader;
+    Librarian librarian;
     
     private CadastrarAtualizarUser() {
         try {
@@ -72,9 +74,50 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
         }
     }
     
+    private CadastrarAtualizarUser(int type, Object user) {
+        try {
+            mfdata = new MaskFormatter("##/##/####");
+            mftelefone = new MaskFormatter("(##) #####-####");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        initComponents();
+        switch(type){
+            case 0:
+                lblCadastroTitulo.setText("ATUALIZAR LEITOR");
+                txtCadastrarMatricula.setEnabled(false);
+                setTitle("Atualizar Leitor");
+                this.type = type;
+                reader = (Reader) user;
+                txtCadastrarNome.setText(reader.getName());
+                txtCadastrarEmail.setText(reader.getEmail());
+                txtCadastrarData.setText(reader.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                txtCadastrarNomeDeUsuario.setText(reader.getCredentical().getUsername());
+                break;
+            case 1:
+                lblCadastroTitulo.setText("ATUALIZAR BIBLIOTECARIO");
+                txtCadastrarDocumento.setEnabled(false);
+                setTitle("Atualizar Bibliotecario");
+                this.type = type;
+                librarian = (Librarian) user;
+                txtCadastrarNome.setText(librarian.getName());
+                txtCadastrarEmail.setText(librarian.getEmail());
+                txtCadastrarData.setText(librarian.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                txtCadastrarNomeDeUsuario.setText(librarian.getCredentical().getUsername());
+                break;
+        }
+    }
+    
     public static CadastrarAtualizarUser getInstance(int type) {
         if (instancia == null) {
             instancia = new CadastrarAtualizarUser(type);
+        }
+        return instancia;
+    }
+    
+    public static CadastrarAtualizarUser getInstance(int type, Object user) {
+        if (instancia == null) {
+            instancia = new CadastrarAtualizarUser(type, user);
         }
         return instancia;
     }
@@ -328,7 +371,14 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarCancelarActionPerformed
 
     private void btnCadastrarSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalvarActionPerformed
-        Credential credential = new Credential();
+        Credential credential;
+        if(reader == null)
+            credential = new Credential();
+        else if(type == 0)
+            credential = reader.getCredentical();
+        else
+            credential = librarian.getCredentical();
+            
         try {
             credential.setUsername(txtCadastrarNomeDeUsuario.getText());
             credential.setPassword(String.valueOf(pwdCadastrarSenha.getPassword()));
@@ -339,7 +389,8 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
         }
         switch(type){
             case 0:
-                Reader reader = new Reader();
+                if(reader == null)
+                    reader = new Reader();
                 try {
                     reader.setCredential(credential);
                     reader.setName(txtCadastrarNome.getText());
@@ -368,7 +419,8 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                 }
                 break;
             case 1:
-                Librarian librarian = new Librarian();
+                if(librarian == null)
+                    librarian = new Librarian();
                 try {
                     librarian.setCredential(credential);
                     librarian.setName(txtCadastrarNome.getText());
@@ -411,47 +463,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
             btnCadastrarSalvar.setEnabled(false);
     }//GEN-LAST:event_btnCadastrarSalvarKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarAtualizarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastrarAtualizarUser().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCancelar;

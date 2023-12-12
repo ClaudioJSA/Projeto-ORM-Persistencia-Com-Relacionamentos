@@ -5,8 +5,6 @@
  */
 package user;
 
-import credential.Credential;
-import credential.CredentialDao;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repository.Dao;
-import repository.DbConnection;
 import role.RoleDao;
 
 /**

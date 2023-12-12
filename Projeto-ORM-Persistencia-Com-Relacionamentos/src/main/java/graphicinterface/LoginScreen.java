@@ -51,12 +51,12 @@ public class LoginScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        lblLogin.setIcon(new javax.swing.ImageIcon("/Users/annekarolinneds/Documents/Projeto-ORM-Persistencia-Com-Relacionamentos/Projeto-ORM-Persistencia-Com-Relacionamentos/src/main/java/graphicinterface/LogoBiblio_resized-4.png")); // NOI18N
+        lblLogin.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
         lblLogin.setVerifyInputWhenFocusTarget(false);
 
         lblUsuario.setText("Usuário:");
 
-        txtUsuario.setText("testReader2");
+        txtUsuario.setText("testeteste");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);

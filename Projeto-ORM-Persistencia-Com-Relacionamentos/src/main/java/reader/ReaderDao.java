@@ -28,7 +28,7 @@ public class ReaderDao extends Dao<Reader>{
 
     @Override
     public String getUpdateStatement() {
-        return "INSERT INTO " + TABLE + "(id) VALUES (?)";
+        return "INSERT INTO " + TABLE + " (id) VALUES (?) ON DUPLICATE KEY UPDATE id = ?";
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ReaderDao extends Dao<Reader>{
     public void coposeSaveOrUpdateStatement(PreparedStatement pstmt, Reader e) {
         try {
             pstmt.setLong(1, e.getId());
-            
+            pstmt.setLong(2, e.getId());
         } catch (SQLException ex) {
             Logger.getLogger(ReaderDao.class.getName()).log(Level.SEVERE, null, ex);
         }

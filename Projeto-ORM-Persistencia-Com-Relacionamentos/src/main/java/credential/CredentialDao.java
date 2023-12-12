@@ -127,7 +127,21 @@ public class CredentialDao extends Dao<Credential>{
         }
         return null;
     }
-
+    
+    public Long findIdbyUser(Long userId){
+        try(PreparedStatement pstmt = DbConnection.getConnection().prepareStatement("SELECT id FROM " + TABLE +" WHERE user = ?")){
+            pstmt.setLong(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+            System.out.println(pstmt);
+            if(rs.next()){
+                return rs.getLong("id");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+    
     public CredentialDao() {
     }
 

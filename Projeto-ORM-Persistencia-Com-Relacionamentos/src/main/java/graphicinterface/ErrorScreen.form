@@ -87,11 +87,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="imgError">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Programas\Dev\netbeans\Projetos\Projeto Trabalho Final\Projeto-ORM-Persistencia-Com-Relacionamentos\Projeto-ORM-Persistencia-Com-Relacionamentos\src\main\resoursces\botao-x_resized.png"/>
-        </Property>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
