@@ -18,18 +18,19 @@ import reader.Reader;
 public class Loan extends Entity{
     private LocalDate dataDoEmprestimo;
     private LocalDate dataDaDevolução;
-    private final Copy[] copies = new Copy[3];
+    private Copy copy;
     private Librarian librarian;
     private Reader reader;
 
     public Loan() {
     }
 
-    public Loan(LocalDate dataDoEmprestimo, LocalDate dataDaDevolução, Librarian librarian, Reader reader) {
+    public Loan(LocalDate dataDoEmprestimo, LocalDate dataDaDevolução, Librarian librarian, Reader reader, Copy copy) {
         this.dataDoEmprestimo = dataDoEmprestimo;
         this.dataDaDevolução = dataDaDevolução;
         this.librarian = librarian;
         this.reader = reader;
+        this.copy = copy;
     }
 
     public LocalDate getDataDoEmprestimo() {
@@ -64,9 +65,18 @@ public class Loan extends Entity{
         this.reader = reader;
     }
 
-    public Copy[] getCopies() {
-        return copies;
+    public Copy getCopies() {
+        return copy;
     }
+
+    public Copy getCopy() {
+        return copy;
+    }
+
+    public void setCopy(Copy copy) {
+        this.copy = copy;
+    }
+    
     
     
 }

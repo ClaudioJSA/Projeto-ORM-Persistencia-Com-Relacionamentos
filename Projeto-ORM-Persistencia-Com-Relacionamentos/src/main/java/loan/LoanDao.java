@@ -5,6 +5,7 @@
  */
 package loan;
 
+import copy.Copy;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,22 +27,22 @@ public class LoanDao extends Dao<Loan>{
     
     @Override
     public String getSaveStatement() {
-        return "INSERT INTO " + TABLE + "(dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader) VALUES (?, ?, ?, ?)";
+        return "INSERT INTO " + TABLE + "(dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy) VALUES (?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatement() {
-        return "UPDATE " + TABLE + " SET dataDoEmprestimo = ?, dataDaDevolução = ?, idlibrarian = ?, idreader = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET dataDoEmprestimo = ?, dataDaDevolução = ?, idlibrarian = ?, idreader = ? copy = ? WHERE id = ?";
     }
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader FROM " + TABLE + " WHERE id = ?";
+        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader FROM " + TABLE;
+        return "SELECT dataDoEmprestimo, dataDaDevolução, idlibrarian, idreader, copy FROM " + TABLE;
     }
 
     @Override
@@ -53,11 +54,15 @@ public class LoanDao extends Dao<Loan>{
     public void coposeSaveOrUpdateStatement(PreparedStatement pstmt, Loan e) {
         try {
             pstmt.setDate(1, Date.valueOf(e.getDataDoEmprestimo()));
-            pstmt.setDate(2, Date.valueOf(e.getDataDaDevolução()));
+            if(e.getDataDaDevolução() != null)
+                pstmt.setDate(2, Date.valueOf(e.getDataDaDevolução()));
+            else
+                pstmt.setDate(2, null);
             pstmt.setLong(3, e.getLibrarian().getId());
             pstmt.setLong(4, e.getReader().getId());
+            pstmt.setLong(5, e.getCopy().getId());
             if (e.getId() != null) {
-                pstmt.setLong(5, e.getId());
+                pstmt.setLong(6, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoanDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,10 +75,12 @@ public class LoanDao extends Dao<Loan>{
         try{
             loan.setLibrarian(new Librarian());
             loan.setReader(new Reader());
+            loan.setCopy(new Copy());
             loan.setDataDoEmprestimo(rs.getDate("dataDoEmprestimo").toLocalDate());
             loan.setDataDaDevolução(rs.getDate("dataDaDevolução").toLocalDate());
             loan.getLibrarian().setId(rs.getLong("idlibrarian"));
             loan.getReader().setId(rs.getLong("idreader"));
+            loan.getCopy().setId(rs.getLong("copy"));
         }catch(Exception ex){
                 System.out.println("Ex: " + ex);      
         }
@@ -88,10 +95,12 @@ public class LoanDao extends Dao<Loan>{
                 Loan loan = new Loan();
                 loan.setLibrarian(new Librarian());
                 loan.setReader(new Reader());
+                loan.setCopy(new Copy());
                 loan.setDataDoEmprestimo(rs.getDate("dataDoEmprestimo").toLocalDate());
                 loan.setDataDaDevolução(rs.getDate("dataDaDevolução").toLocalDate());
                 loan.getLibrarian().setId(rs.getLong("idlibrarian"));
                 loan.getReader().setId(rs.getLong("idreader"));
+                loan.getCopy().setId(rs.getLong("copy"));
                 loans.add(loan);
             }
         }catch(Exception ex){

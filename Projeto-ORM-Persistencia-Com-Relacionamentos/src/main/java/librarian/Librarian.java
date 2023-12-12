@@ -23,6 +23,8 @@ public class Librarian extends User{
             setBirthDate(user.getBirthDate());
             setCredential(user.getCredentical());
             setRole(user.getRole());
+            if(user.getId() != null)
+                setId(user.getId());
         }catch (Exception ex){
             System.out.println(ex);
         }

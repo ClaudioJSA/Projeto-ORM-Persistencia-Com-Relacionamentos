@@ -30,17 +30,17 @@ public class CopyDao extends Dao<Copy>{
 
     @Override
     public String getUpdateStatement() {
-        return "UPDATE " + TABLE + " available = ?, conditionn = ?, acquisition = ?, idbook = ? WHERE id = ?;";
+        return "UPDATE " + TABLE + " SET available = ?, conditionn = ?, acquisition = ?, idbook = ? WHERE id = ?;";
     }
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT available, conditionn, acquisition, idbookFROM " + TABLE + " WHERE id = ?";
+        return "SELECT available, conditionn, acquisition, idbook, FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT available, conditionn, acquisition, idbook FROM " + TABLE;
+        return "SELECT available, conditionn, acquisition, idbook, id FROM " + TABLE;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CopyDao extends Dao<Copy>{
             pstmt.setDate(3, Date.valueOf(e.getAcquisition()));
             pstmt.setLong(4, e.getBook().getId());
             if (e.getId() != null) {
-                pstmt.setLong(4, e.getId());
+                pstmt.setLong(5, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(CopyDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,6 +70,7 @@ public class CopyDao extends Dao<Copy>{
             copy.setAvailable(rs.getBoolean("available"));
             copy.setCondition(rs.getString("conditionn"));
             copy.setAcquisition(rs.getDate("acquisition").toLocalDate());
+            copy.setId(rs.getLong("id"));
             copy.setBook(new BookDao().findById(rs.getLong("idbook")));
             copy.getBook().setId(rs.getLong("idbook"));
         }catch(Exception ex){

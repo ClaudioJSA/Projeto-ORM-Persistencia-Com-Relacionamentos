@@ -5,17 +5,21 @@
  */
 package graphicinterface;
 
-import book.BookDao;
 import copy.Copy;
 import copy.CopyDao;
 import credential.Credential;
 import credential.CredentialDao;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 import librarian.Librarian;
+import loan.Loan;
+import loan.LoanDao;
+import reader.Reader;
+import reader.ReaderDao;
 import user.User;
 
 /**
@@ -31,6 +35,7 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
     Librarian librarian;
     DefaultTableModel model;
     int selectedCopy;
+    Credential credential;
     /**
      * Creates new form EmprestimoScreen
      */
@@ -52,6 +57,7 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         txtEmprestimoScreenDocumento.setEnabled(false);
         txtEmprestimoScreenEmail.setEnabled(false);
         txtEmprestimoScreenNome.setEnabled(false);
+        loadTable();
     }
     
     public static EmprestimoScreen getInstance(Librarian librarian) {
@@ -173,6 +179,11 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         });
 
         btnEmprestimoScreeenCancelar.setText("Cancelar");
+        btnEmprestimoScreeenCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmprestimoScreeenCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Senha:");
@@ -309,15 +320,29 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEmprestimoScreeenProcurarLivroActionPerformed
 
     private void btnEmprestimoScreeenEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimoScreeenEmprestarActionPerformed
-        // TODO add your handling code here:
+        if(tblEmprestimoScreeen.getSelectedRow() != -1){
+            Loan loan = new Loan();
+            loan.setReader(new Reader(credential.getUser()));
+            loan.setDataDoEmprestimo(LocalDate.now());
+            loan.setLibrarian(librarian);
+            loan.setCopy(copies.get(tblEmprestimoScreeen.getSelectedRow()));
+            loan.setId(new LoanDao().saveOrUpdate(loan));
+            copies.get(tblEmprestimoScreeen.getSelectedRow()).setAvailable(false);
+            new CopyDao().saveOrUpdate(copies.get(tblEmprestimoScreeen.getSelectedRow()));
+            btnEmprestimoScreeenEmprestar.setEnabled(false);
+            btnEmprestimoScreeenCancelar.setText("Sair");
+        }
     }//GEN-LAST:event_btnEmprestimoScreeenEmprestarActionPerformed
 
     private void ckbEmprestimoScreeenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckbEmprestimoScreeenActionPerformed
-        // TODO add your handling code here:
+        if(ckbEmprestimoScreeen.isContentAreaFilled() == true)
+            btnEmprestimoScreeenEmprestar.setEnabled(true);
+        else
+            btnEmprestimoScreeenEmprestar.setEnabled(false);
     }//GEN-LAST:event_ckbEmprestimoScreeenActionPerformed
 
     private void btnEmprestimoScreeenProcurarReaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimoScreeenProcurarReaderActionPerformed
-        Credential credential = new Credential();
+        credential = new Credential();
         credential.setUser(new User());
         try {
             credential.setUsername(txtEmprestimoScreenUser.getText());
@@ -328,14 +353,18 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         CredentialDao credentialDao = new CredentialDao();
         credential.setUser(credentialDao.authenticate(credential));
         if(credential.getUser() != null){
-            txtEmprestimoScreenNome.setText(credential.getUser().getName());
-            txtEmprestimoScreenEmail.setText(credential.getUser().getEmail());
-            txtEmpresetimoScreenNacimento.setText(credential.getUser().getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            txtEmpresetimoScreenNacimento.setEnabled(true);
-            txtEmprestimoScreenDocumento.setEnabled(true);
-            txtEmprestimoScreenEmail.setEnabled(true);
-            txtEmprestimoScreenNome.setEnabled(true);
-            loadTable();
+            if(new ReaderDao().findById(credential.getUser().getId()) != null){
+                credential.getUser().setCredential(credential);
+                txtEmprestimoScreenNome.setText(credential.getUser().getName());
+                txtEmprestimoScreenEmail.setText(credential.getUser().getEmail());
+                txtEmpresetimoScreenNacimento.setText(credential.getUser().getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                txtEmpresetimoScreenNacimento.setEnabled(true);
+                txtEmprestimoScreenDocumento.setEnabled(true);
+                txtEmprestimoScreenEmail.setEnabled(true);
+                txtEmprestimoScreenNome.setEnabled(true);
+                ckbEmprestimoScreeen.setEnabled(true);
+                loadTable();
+            }
         }
         else{
             //new ErrorScreen(this, 0).setVisible(true);
@@ -343,7 +372,14 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEmprestimoScreeenProcurarReaderActionPerformed
 
     private void txtEmprestimoScreenProcurarLivroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmprestimoScreenProcurarLivroFocusLost
+        if(txtEmprestimoScreenProcurarLivro.getText().trim().isEmpty()){
+            loadTable();} 
     }//GEN-LAST:event_txtEmprestimoScreenProcurarLivroFocusLost
+
+    private void btnEmprestimoScreeenCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimoScreeenCancelarActionPerformed
+        dispose();
+        instancia = null;
+    }//GEN-LAST:event_btnEmprestimoScreeenCancelarActionPerformed
 
     private void loadTable(){
         if(!fill)
@@ -351,15 +387,17 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
         model = (DefaultTableModel) tblEmprestimoScreeen.getModel();
         model.setNumRows(0);
         for(int i =0; i<copies.size();i++){
-            model.addRow(new Object[]{
-                copies.get(i).getBook().getTitle(),
-                copies.get(i).getBook().getAuthors(),
-                copies.get(i).getBook().getEdition(),
-                copies.get(i).getBook().getPages(),
-                copies.get(i).getBook().getYear(),
-                copies.get(i).getCondition(),
-                copies.get(i).getAcquisition().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            });
+            if(copies.get(i).isAvailable() == true){
+                model.addRow(new Object[]{
+                    copies.get(i).getBook().getTitle(),
+                    copies.get(i).getBook().getAuthors(),
+                    copies.get(i).getBook().getEdition(),
+                    copies.get(i).getBook().getPages(),
+                    copies.get(i).getBook().getYear(),
+                    copies.get(i).getCondition(),
+                    copies.get(i).getAcquisition().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                });
+            }
         }
         fill=true;
     }
