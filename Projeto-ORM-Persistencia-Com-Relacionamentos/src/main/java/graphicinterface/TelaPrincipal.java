@@ -6,6 +6,7 @@
 package graphicinterface;
 
 import javax.swing.ImageIcon;
+import librarian.Librarian;
 import user.User;
 
 /**
@@ -13,14 +14,14 @@ import user.User;
  * @author Claudio Alcantara &lt;claudio.alcantara at ifnmg.edi.br&gt;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
+    User user;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
-        
     }
     
     LoginScreen loginScreen;
@@ -29,6 +30,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.loginScreen = loginScreen;
+        this.user = user;
     }
     public javax.swing.JPanel getPrincipalPnl(){
         return pnlTelaPrincipal;
@@ -71,9 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu11 = new javax.swing.JMenu();
-        jMenu19 = new javax.swing.JMenu();
-        jMenu20 = new javax.swing.JMenu();
-        jMenu22 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -199,14 +199,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu11.setText("Emprestimo");
 
-        jMenu19.setText("Novo");
-        jMenu11.add(jMenu19);
-
-        jMenu20.setText("Devolver");
-        jMenu11.add(jMenu20);
-
-        jMenu22.setText("Autorizar");
-        jMenu11.add(jMenu22);
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem9.setText("Novo");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem9);
 
         jMenuBar1.add(jMenu11);
 
@@ -259,6 +259,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastrarAtualizarUser cadastrarAtualizarUser = CadastrarAtualizarUser.getInstance(1);
         pnlTelaPrincipal.add(cadastrarAtualizarUser);
         cadastrarAtualizarUser.setVisible(true);
+        cadastrarAtualizarUser.toFront();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -275,6 +276,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         listarUser.toFront();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+       EmprestimoScreen emprestimoScreen = EmprestimoScreen.getInstance(new Librarian(user));
+       pnlTelaPrincipal.add(emprestimoScreen);
+       emprestimoScreen.setVisible(true);
+       emprestimoScreen.toFront();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -283,11 +291,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu13;
-    private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu20;
     private javax.swing.JMenu jMenu21;
-    private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -308,6 +313,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JMenuItem mnuPrincipalCadLeitor;
     private javax.swing.JPanel pnlTelaPrincipal;

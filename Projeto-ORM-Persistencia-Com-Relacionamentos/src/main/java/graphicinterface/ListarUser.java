@@ -273,6 +273,7 @@ public class ListarUser extends javax.swing.JInternalFrame {
                 }
                 break;
         }
+        fill=true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

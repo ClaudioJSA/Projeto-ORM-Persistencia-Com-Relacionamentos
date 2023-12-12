@@ -31,8 +31,8 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastrarUsuario
      */
-    MaskFormatter mfdata;
-    MaskFormatter mftelefone;
+    private MaskFormatter mfdata;
+    private MaskFormatter mftelefone;
     private static CadastrarAtualizarUser instancia;
     int type;
     Reader reader;

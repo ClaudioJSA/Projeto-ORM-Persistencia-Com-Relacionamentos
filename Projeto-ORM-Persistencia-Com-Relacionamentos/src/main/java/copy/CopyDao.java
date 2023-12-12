@@ -5,6 +5,7 @@
  */
 package copy;
 
+import book.BookDao;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,12 +35,12 @@ public class CopyDao extends Dao<Copy>{
 
     @Override
     public String getFindByIdStatement() {
-        return "SELECT available, conditionn, acquisition FROM " + TABLE + " WHERE id = ?";
+        return "SELECT available, conditionn, acquisition, idbookFROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
     public String getFindAllStatement() {
-        return "SELECT available, conditionn, acquisition FROM " + TABLE;
+        return "SELECT available, conditionn, acquisition, idbook FROM " + TABLE;
     }
 
     @Override
@@ -69,6 +70,8 @@ public class CopyDao extends Dao<Copy>{
             copy.setAvailable(rs.getBoolean("available"));
             copy.setCondition(rs.getString("conditionn"));
             copy.setAcquisition(rs.getDate("acquisition").toLocalDate());
+            copy.setBook(new BookDao().findById(rs.getLong("idbook")));
+            copy.getBook().setId(rs.getLong("idbook"));
         }catch(Exception ex){
                 System.out.println("Ex: " + ex);      
         }
@@ -79,12 +82,8 @@ public class CopyDao extends Dao<Copy>{
     public List<Copy> extractObjects(ResultSet rs) {
         List<Copy> copies = new ArrayList<>();
         try{
-            while(rs.next()){
-                Copy copy = new Copy();
-                copy.setAvailable(rs.getBoolean("available"));
-                copy.setCondition(rs.getString("conditionn"));
-                copy.setAcquisition(rs.getDate("acquisition").toLocalDate());                
-                copies.add(copy);
+            while(rs.next()){ 
+                copies.add(extractObject(rs));
             }
         }catch(Exception ex){
                 System.out.println("Ex: " + ex);      
