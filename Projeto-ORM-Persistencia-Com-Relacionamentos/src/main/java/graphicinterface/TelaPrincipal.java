@@ -6,6 +6,8 @@
 package graphicinterface;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import librarian.Librarian;
@@ -45,16 +47,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mnuPrincipalCadExemp.setEnabled(false);
             mnuPrincipalEdtBibli.setEnabled(false);
             mnuPrincipalEdtLeitor.setEnabled(false);
+            mnuPrincipalEdtLivro.setEnabled(false);
+            mnuPrincipalEdtExemp.setVisible(false);
             mnuPrincipalEmpNovo.setEnabled(false);
+            mnuPrincipalEmpDev.setEnabled(false);
             mnuPrincipalCadAdmin.setEnabled(false);
-        }
-        if(new LibrarianDao().findById(user.getId()) != null){
+            mnuPrincipalEdtAdmin.setVisible(false);
+            mnuTelaPrincipalRelAdm.setEnabled(false);
+            mnuTelaPrincipalRelBibli.setEnabled(false);
+            mnuTelaPrincipalRelEmp.setEnabled(false);
+            mnuTelaPrincipalRelExemp.setEnabled(false);
+            mnuTelaPrincipalRelLeitores.setEnabled(false);
+            mnuTelaPrincipalRelLivros.setEnabled(false);
+            mnuTelaPrincipalRelAdm.setEnabled(false);
+            RelComent.setEnabled(false);
+            
+        }else if(new LibrarianDao().findById(user.getId()) != null){
             mnuPrincipalCadBibli.setEnabled(false);
             mnuPrincipalCadLeitor.setEnabled(false);
             mnuPrincipalEdtBibli.setEnabled(false);
             mnuPrincipalEdtLeitor.setEnabled(false);
+            mnuPrincipalEdtAdmin.setVisible(false);
             mnuPrincipalCadAdmin.setEnabled(false);
+            mnuTelaPrincipalRelAdm.setEnabled(false);
+            mnuTelaPrincipalRelBibli.setEnabled(false);
+            mnuTelaPrincipalRelEmp.setEnabled(false);
+            mnuTelaPrincipalRelExemp.setEnabled(false);
+            mnuTelaPrincipalRelLeitores.setEnabled(false);
+            mnuTelaPrincipalRelLivros.setEnabled(false);
+            mnuTelaPrincipalRelAdm.setEnabled(false);
+            RelComent.setEnabled(false);
         }
+        else
+            mnuPrincipalEmpNovo.setVisible(false);
     }
     public javax.swing.JPanel getPrincipalPnl(){
         return pnlTelaPrincipal;
@@ -83,8 +108,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenu21 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         pnlTelaPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         Cadastrar = new javax.swing.JMenu();
         mnuPrincipalCadLeitor = new javax.swing.JMenuItem();
         mnuPrincipalCadBibli = new javax.swing.JMenuItem();
@@ -98,8 +126,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuPrincipalEdtExemp = new javax.swing.JMenuItem();
         Exibir = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         Emprestimo = new javax.swing.JMenu();
         mnuPrincipalEmpNovo = new javax.swing.JMenuItem();
         mnuPrincipalEmpDev = new javax.swing.JMenuItem();
@@ -111,6 +137,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuTelaPrincipalRelAdm = new javax.swing.JMenuItem();
         mnuTelaPrincipalRelExemp = new javax.swing.JMenuItem();
         mnuTelaPrincipalRelEmp = new javax.swing.JMenuItem();
+        RelComent = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -138,6 +165,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu21.setText("jMenu21");
 
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         setName("tlPrincipal"); // NOI18N
@@ -155,8 +184,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         pnlTelaPrincipalLayout.setVerticalGroup(
             pnlTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("Arquivo");
+
+        jMenuItem2.setText("Sair");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
 
         Cadastrar.setText("Cadastrar");
 
@@ -247,6 +288,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Exibir.setText("Exibir");
 
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem5.setText("Exibir livros");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,12 +296,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         Exibir.add(jMenuItem5);
-
-        jMenuItem6.setText("Exibir leitores");
-        Exibir.add(jMenuItem6);
-
-        jMenuItem7.setText("Exibir bibliotecarios");
-        Exibir.add(jMenuItem7);
 
         jMenuBar1.add(Exibir);
 
@@ -350,6 +386,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu12.add(mnuTelaPrincipalRelEmp);
 
+        RelComent.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        RelComent.setText("Relatorio de comentarios");
+        RelComent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RelComentActionPerformed(evt);
+            }
+        });
+        jMenu12.add(RelComent);
+
         jMenuBar1.add(jMenu12);
 
         setJMenuBar(jMenuBar1);
@@ -374,7 +419,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        ListarLivros listarLivros;
+            listarLivros = ListarLivros.getInstance(this, 0, user);
+        pnlTelaPrincipal.add(listarLivros);
+        listarLivros.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void mnuPrincipalCadExempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalCadExempActionPerformed
@@ -470,8 +518,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuTelaPrincipalRelEmpActionPerformed
 
     private void mnuPrincipalEdtLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEdtLivroActionPerformed
-        
+        ListarLivros listarLivros = ListarLivros.getInstance(this, 2, user);
+        pnlTelaPrincipal.add(listarLivros);
+        listarLivros.setVisible(true);
+        listarLivros.toFront();
     }//GEN-LAST:event_mnuPrincipalEdtLivroActionPerformed
+
+    private void RelComentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelComentActionPerformed
+        ListarLivros listarLivros = ListarLivros.getInstance(this, 3, user);
+        pnlTelaPrincipal.add(listarLivros);
+        listarLivros.setVisible(true);
+        listarLivros.toFront();
+    }//GEN-LAST:event_RelComentActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dispose();
+        loginScreen.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void generateReport(String jasperFile, String title){
         try(InputStream in = getClass().getResourceAsStream("/"+jasperFile)){
@@ -488,12 +551,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Cadastrar;
     private javax.swing.JMenu Editar;
     private javax.swing.JMenu Emprestimo;
     private javax.swing.JMenu Exibir;
+    private javax.swing.JMenuItem RelComent;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu21;
@@ -509,9 +576,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar5;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JMenuItem mnuPrincipalCadAdmin;
     private javax.swing.JMenuItem mnuPrincipalCadBibli;

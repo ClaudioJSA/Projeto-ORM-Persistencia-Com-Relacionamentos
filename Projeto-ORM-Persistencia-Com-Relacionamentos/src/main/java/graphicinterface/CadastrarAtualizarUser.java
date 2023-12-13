@@ -22,6 +22,7 @@ import reader.Reader;
 import reader.ReaderDao;
 import role.Role;
 import role.RoleDao;
+import user.User;
 import user.UserDao;
 
 /**
@@ -97,7 +98,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                 txtCadastrarMatricula.setEnabled(false);
                 setTitle("Atualizar Leitor");
                 this.type = type;
-                reader = (Reader) user;
+                reader = new Reader((User) user);
                 txtCadastrarNome.setText(reader.getName());
                 txtCadastrarEmail.setText(reader.getEmail());
                 txtCadastrarData.setText(reader.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -108,7 +109,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                 txtCadastrarDocumento.setEnabled(false);
                 setTitle("Atualizar Bibliotecario");
                 this.type = type;
-                librarian = (Librarian) user;
+                librarian = new Librarian((User) user);
                 txtCadastrarNome.setText(librarian.getName());
                 txtCadastrarEmail.setText(librarian.getEmail());
                 txtCadastrarData.setText(librarian.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -119,7 +120,7 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
                 txtCadastrarDocumento.setEnabled(false);
                 setTitle("Cadastrar Administador");
                 this.type = type;
-                admin = (Admin) user;
+                admin = new Admin((User) user);
                 txtCadastrarNome.setText(admin.getName());
                 txtCadastrarEmail.setText(admin.getEmail());
                 txtCadastrarData.setText(admin.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -392,14 +393,23 @@ public class CadastrarAtualizarUser extends javax.swing.JInternalFrame {
 
     private void btnCadastrarSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalvarActionPerformed
         Credential credential;
-        if(reader == null)
+        if(reader == null){
             credential = new Credential();
-        else if(type == 0)
+            credential.setId(new CredentialDao().findIdbyUser(reader.getId()));
+        }
+        else if(type == 0){
             credential = reader.getCredentical();
-        else if(type == 1)
-            credential = librarian.getCredentical();
-        else
+            credential.setId(new CredentialDao().findIdbyUser(reader.getId()));
+        }
+        else if(type == 1){
+                credential = librarian.getCredentical();
+                credential.setId(new CredentialDao().findIdbyUser(librarian.getId()));
+        }
+        else{
             credential = admin.getCredentical();
+            credential.setId(new CredentialDao().findIdbyUser(admin.getId()));
+        }
+            
             
         try {
             credential.setUsername(txtCadastrarNomeDeUsuario.getText());

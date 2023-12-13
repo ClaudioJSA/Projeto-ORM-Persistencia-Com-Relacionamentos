@@ -72,7 +72,8 @@ CREATE TABLE copy(
 CREATE TABLE comment(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     comment VARCHAR(500),
-    idreader BIGINT    
+    idreader BIGINT,
+    idbook BIGINT
 );
 
 CREATE TABLE loan(
@@ -90,6 +91,7 @@ ALTER TABLE reader ADD FOREIGN KEY (id) REFERENCES user(id);
 ALTER TABLE librarian ADD FOREIGN KEY (id) REFERENCES user(id);
 ALTER TABLE admin ADD FOREIGN KEY (id) REFERENCES user(id);
 ALTER TABLE copy ADD FOREIGN KEY (idbook) REFERENCES book(id);
-ALTER TABLE comment ADD FOREIGN KEY (idreader) REFERENCES reader(id);
+ALTER TABLE comment ADD FOREIGN KEY (idreader) REFERENCES user(id);
+ALTER TABLE comment ADD FOREIGN KEY (idbook) REFERENCES book(id);
 ALTER TABLE loan ADD FOREIGN KEY (idreader) REFERENCES reader(id);
 ALTER TABLE loan ADD FOREIGN KEY (idlibrarian) REFERENCES librarian(id);

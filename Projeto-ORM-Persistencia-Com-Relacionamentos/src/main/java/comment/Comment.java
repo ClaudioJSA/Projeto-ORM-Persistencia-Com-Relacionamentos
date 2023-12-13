@@ -5,8 +5,10 @@
  */
 package comment;
 
+import book.Book;
 import entity.Entity;
 import reader.Reader;
+import user.User;
 
 /**
  *
@@ -14,14 +16,15 @@ import reader.Reader;
  */
 public class Comment extends Entity{
     private String comment;
-    private Reader reader;
+    private User user;
+    private Book book;
 
     public Comment() {
     }
 
     public Comment(String comment, Reader reader) {
         this.comment = comment;
-        this.reader = reader;
+        this.user = reader;
     }
 
     public String getComment() {
@@ -32,11 +35,19 @@ public class Comment extends Entity{
         this.comment = comment;
     }
 
-    public Reader getReader() {
-        return reader;
+    public User getUser() {
+        return user;
     }
 
-    public void setReader(Reader reader) {
-        this.reader = reader;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

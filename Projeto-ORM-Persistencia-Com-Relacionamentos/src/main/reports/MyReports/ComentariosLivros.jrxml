@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ComentariosLivros" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="79980f9f-a85e-468d-a82f-6419130f1362">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[Y29tbWVudCAsMTE4LDE1LDM2YjUyYmY5LTg2ODktNGQ5My04N2I5LWRlMWVmNDkyYmU1Mzt1c2Vy
+ICwyMzYsMjgsODk1NGYyYjktZjdkYS00NTMxLWE2ZmMtMzEzYjI1ZGExOWM2O2Jvb2sgLDE1LDE1
+LGQzZmI0ODQwLWU2ZDUtNDQ3NC05MWZiLTA0YjRkOTY3OTNkMjs=]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Remoto"/>
+	<parameter name="idbook" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[$P{idbook}]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT book.id AS book_id,
+	book.title AS book_title,
+	book.edition,
+	comment.comment AS comment_text,
+	user.name AS reader_name
+FROM book
+	LEFT JOIN comment ON 
+	 book.id = comment.idbook 
+	LEFT JOIN user ON 
+	 comment.idreader = user.id 
+WHERE 
+	 book.id = $P{idbook}]]>
+	</queryString>
+	<field name="book_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="book_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="book_title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="title"/>
+		<property name="com.jaspersoft.studio.field.label" value="book_title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="edition" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="edition"/>
+		<property name="com.jaspersoft.studio.field.label" value="edition"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="comment_text" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="comment"/>
+		<property name="com.jaspersoft.studio.field.label" value="comment_text"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="comment"/>
+	</field>
+	<field name="reader_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="reader_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="user"/>
+	</field>
+	<background>
+		<band height="17"/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="cb1ce305-65e6-45e9-9b95-7a7fa272f75e"/>
+				<staticText>
+					<reportElement x="20" y="10" width="330" height="70" forecolor="#FFFFFF" uuid="a6172cf9-0002-48dc-8b35-7e95a47baf58"/>
+					<textElement>
+						<font size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatorio de Comentários de Livros TCD | Biblioteca]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="358" y="6" width="214" height="80" forecolor="#FFFFFF" uuid="b6956302-f54b-438a-b806-c8e1d958326a"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Equipe:
+Claudio Juliano Santos Alcantara
+Emerson Versiane
+Anne Santos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="30875db8-337e-436c-8c20-91652a988ec1"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="17bc8f1e-e5d9-4031-b0c4-f3fd597a4145">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81359c46-4a4a-4656-b59f-275fbc3a22b7"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="0" width="130" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2994700c-b78e-4bd0-90d0-4e7c75c1d879">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="723e594a-4be3-418c-bf24-eb6eb3b0ad95"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9b4474c4-d9b4-4f63-8153-ce80ba61cea7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="93fefdb0-7b52-4f8c-b8e3-af13d15d6961"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="320" y="0" width="234" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="15fb50c6-3156-4c3b-9eec-ba77e3e6e411">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="53416f4a-7bcf-422e-8bcb-d68c6bf3b784"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comentários]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="210" y="0" width="110" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a25e8fb9-116f-4163-9ed4-506930be9536">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84afe41f-2fad-4331-8184-d1cb31c10436"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor Comen.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="37bc9243-a42e-40a3-8449-ccd59a72d859"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="30" height="20" uuid="6fefcc2d-af05-461a-8115-dc01dbe0c432">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81359c46-4a4a-4656-b59f-275fbc3a22b7"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_id}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="30" y="0" width="130" height="20" uuid="8edaf32b-e1ec-4cc9-8732-9778663629de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="723e594a-4be3-418c-bf24-eb6eb3b0ad95"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_title}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="160" y="0" width="50" height="20" uuid="92f117b8-ea2a-42cf-a7f3-6ecfbde9245c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="93fefdb0-7b52-4f8c-b8e3-af13d15d6961"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edition}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="320" y="-1" width="234" height="20" uuid="8d33b2c5-2479-4246-8f70-56c3df3bb6d3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="53416f4a-7bcf-422e-8bcb-d68c6bf3b784"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{comment_text}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="210" y="-1" width="110" height="20" uuid="292e71c7-228c-441e-bcf1-f4207ffef677">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84afe41f-2fad-4331-8184-d1cb31c10436"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reader_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="6" width="515" height="13" backcolor="#E6E6E6" uuid="fab15b02-797a-4c32-a266-6e50944b2b07"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="6" width="40" height="13" backcolor="#E6E6E6" uuid="ca8d5d60-7eca-44ca-ae9d-54d4ab3c56b2"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="6" width="100" height="13" uuid="d9e1a2a6-df5c-4e54-aa8a-6b58b4ee4ea6"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(java.time.LocalDateTime.now());]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

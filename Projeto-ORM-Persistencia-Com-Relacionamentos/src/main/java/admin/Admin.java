@@ -22,6 +22,7 @@ public class Admin extends User{
             setBirthDate(user.getBirthDate());
             setCredential(user.getCredentical());
             setRole(user.getRole());
+            setId(user.getId());
         }catch (Exception ex){
             System.out.println(ex);
         }

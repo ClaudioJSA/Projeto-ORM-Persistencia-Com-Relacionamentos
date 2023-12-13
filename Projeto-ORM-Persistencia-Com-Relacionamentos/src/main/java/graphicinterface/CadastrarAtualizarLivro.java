@@ -20,15 +20,23 @@ public class CadastrarAtualizarLivro extends javax.swing.JInternalFrame {
      */    
     private static CadastrarAtualizarLivro instancia;
     private TelaPrincipal telaPrincipal;
+    Book book;
     
-    private CadastrarAtualizarLivro(TelaPrincipal telaPrincipal) {
+    private CadastrarAtualizarLivro(TelaPrincipal telaPrincipal, Book book) {
         this.telaPrincipal = telaPrincipal;
+        this.book = book;
         initComponents();
+        txtBookTitulo.setText(book.getTitle());
+        txtBookAno.setText(book.getYear().toString());
+        txtBookAutores.setText(book.getAuthors());
+        txtBookEdicao.setText(book.getEdition().toString());
+        txtBookPaginas.setText(book.getPages().toString());
+        
     }
     
-    public static CadastrarAtualizarLivro getInstance(TelaPrincipal telaPrincipal) {
+    public static CadastrarAtualizarLivro getInstance(TelaPrincipal telaPrincipal, Book book) {
         if (instancia == null) {
-            instancia = new CadastrarAtualizarLivro(telaPrincipal);
+            instancia = new CadastrarAtualizarLivro(telaPrincipal, book);
         }
         return instancia;
     }
@@ -199,7 +207,8 @@ public class CadastrarAtualizarLivro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBookCancelarActionPerformed
 
     private void btnBookSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookSalvarActionPerformed
-        Book book = new Book();
+        if(book == null)
+            book = new Book();
         try{
             book.setTitle(txtBookTitulo.getText());
             book.setAuthors(txtBookAutores.getText());

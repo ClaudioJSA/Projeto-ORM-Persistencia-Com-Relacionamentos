@@ -202,7 +202,7 @@ public class CadastrarAtualizarExemplar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExemplarCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CadastrarAtualizarLivro cadastrarAtualizarLivro = CadastrarAtualizarLivro.getInstance(telaPrincipal);
+        CadastrarAtualizarLivro cadastrarAtualizarLivro = CadastrarAtualizarLivro.getInstance(telaPrincipal, null);
         telaPrincipal.getPrincipalPnl().add(cadastrarAtualizarLivro);
         cadastrarAtualizarLivro.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
