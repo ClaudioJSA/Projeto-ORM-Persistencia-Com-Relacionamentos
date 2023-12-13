@@ -332,6 +332,7 @@ public class EmprestimoScreen extends javax.swing.JInternalFrame {
                 loan.getReader().setQtdEmpretimos(loan.getReader().getQtdEmpretimos()+1);
                 loan.setDataDoEmprestimo(LocalDate.now());
                 loan.setLibrarian(librarian);
+                System.out.println(librarian);
                 loan.setCopy(copies.get(tblEmprestimoScreeen.getSelectedRow()));
                 loan.setId(new LoanDao().saveOrUpdate(loan));
                 copies.get(tblEmprestimoScreeen.getSelectedRow()).setAvailable(false);

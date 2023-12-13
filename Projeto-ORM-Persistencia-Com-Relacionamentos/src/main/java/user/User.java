@@ -90,7 +90,7 @@ public class User extends Entity{
 
     @Override
     public String toString() {
-        return "User{" + "name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", credentical=" + credentical + ", role=" + role + '}';
+        return "User{id="+ getId() + "name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", credentical=" + credentical + ", role=" + role + '}';
     }
     
     

@@ -40,7 +40,8 @@ CREATE TABLE role(
 );
 
 CREATE TABLE reader(
-    id BIGINT PRIMARY KEY
+    id BIGINT PRIMARY KEY,
+    qtdemprestimos int
 );
 
 CREATE TABLE librarian(
@@ -82,11 +83,6 @@ CREATE TABLE loan(
     idreader BIGINT
 );
 
-CREATE TABLE copies(
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    idloan BIGINT,
-    idcopy BIGINT
-);
 
 ALTER TABLE credential ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE user ADD FOREIGN KEY (role) REFERENCES role(id);
@@ -97,5 +93,3 @@ ALTER TABLE copy ADD FOREIGN KEY (idbook) REFERENCES book(id);
 ALTER TABLE comment ADD FOREIGN KEY (idreader) REFERENCES reader(id);
 ALTER TABLE loan ADD FOREIGN KEY (idreader) REFERENCES reader(id);
 ALTER TABLE loan ADD FOREIGN KEY (idlibrarian) REFERENCES librarian(id);
-ALTER TABLE copies ADD FOREIGN KEY (idloan) REFERENCES loan(id);
-ALTER TABLE copies ADD FOREIGN KEY (idcopy) REFERENCES copy(id);

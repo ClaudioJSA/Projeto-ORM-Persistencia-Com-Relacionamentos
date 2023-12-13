@@ -194,8 +194,10 @@ public class LoanHistory extends javax.swing.JInternalFrame {
         if(loans.get(tblLoanHystory.getSelectedRow()).getDataDaDevolução() == null){
             loans.get(tblLoanHystory.getSelectedRow()).setDataDaDevolução(LocalDate.now());
             loans.get(tblLoanHystory.getSelectedRow()).getCopy().setAvailable(true);
+            loans.get(tblLoanHystory.getSelectedRow()).getReader().setQtdEmpretimos(loans.get(tblLoanHystory.getSelectedRow()).getReader().getQtdEmpretimos()-1);
             new LoanDao().saveOrUpdate(loans.get(tblLoanHystory.getSelectedRow()));
             new CopyDao().saveOrUpdate(loans.get(tblLoanHystory.getSelectedRow()).getCopy());
+            new ReaderDao().saveOrUpdate(loans.get(tblLoanHystory.getSelectedRow()).getReader());
             btnLoanHistDevolver.setEnabled(false);
         }
     }//GEN-LAST:event_btnLoanHistDevolverActionPerformed

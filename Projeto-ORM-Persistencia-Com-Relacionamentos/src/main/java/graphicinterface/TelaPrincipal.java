@@ -5,10 +5,16 @@
  */
 package graphicinterface;
 
+import java.io.InputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import librarian.Librarian;
 import librarian.LibrarianDao;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import reader.ReaderDao;
+import repository.DbConnection;
 import user.User;
 
 /**
@@ -99,7 +105,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuPrincipalEmpDev = new javax.swing.JMenuItem();
         mnuPrincipalEmpHist = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuTelaPrincipalRelLivros = new javax.swing.JMenuItem();
+        mnuTelaPrincipalRelLeitores = new javax.swing.JMenuItem();
+        mnuTelaPrincipalRelBibli = new javax.swing.JMenuItem();
+        mnuTelaPrincipalRelAdm = new javax.swing.JMenuItem();
+        mnuTelaPrincipalRelExemp = new javax.swing.JMenuItem();
+        mnuTelaPrincipalRelEmp = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -221,6 +232,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mnuPrincipalEdtLivro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
         mnuPrincipalEdtLivro.setText("Editar livro");
+        mnuPrincipalEdtLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrincipalEdtLivroActionPerformed(evt);
+            }
+        });
         Editar.add(mnuPrincipalEdtLivro);
 
         mnuPrincipalEdtExemp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
@@ -280,8 +296,59 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu12.setText("Relatorio");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu12.add(jMenuItem1);
+        mnuTelaPrincipalRelLivros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuTelaPrincipalRelLivros.setText("Relatorio de livros");
+        mnuTelaPrincipalRelLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTelaPrincipalRelLivrosActionPerformed(evt);
+            }
+        });
+        jMenu12.add(mnuTelaPrincipalRelLivros);
+
+        mnuTelaPrincipalRelLeitores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuTelaPrincipalRelLeitores.setText("Relatorio de leitores");
+        mnuTelaPrincipalRelLeitores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTelaPrincipalRelLeitoresActionPerformed(evt);
+            }
+        });
+        jMenu12.add(mnuTelaPrincipalRelLeitores);
+
+        mnuTelaPrincipalRelBibli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuTelaPrincipalRelBibli.setText("Relatório de bibliotecarios");
+        mnuTelaPrincipalRelBibli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTelaPrincipalRelBibliActionPerformed(evt);
+            }
+        });
+        jMenu12.add(mnuTelaPrincipalRelBibli);
+
+        mnuTelaPrincipalRelAdm.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuTelaPrincipalRelAdm.setText("Relatório de administradores");
+        mnuTelaPrincipalRelAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTelaPrincipalRelAdmActionPerformed(evt);
+            }
+        });
+        jMenu12.add(mnuTelaPrincipalRelAdm);
+
+        mnuTelaPrincipalRelExemp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuTelaPrincipalRelExemp.setText("Relarório de exemplares");
+        mnuTelaPrincipalRelExemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTelaPrincipalRelExempActionPerformed(evt);
+            }
+        });
+        jMenu12.add(mnuTelaPrincipalRelExemp);
+
+        mnuTelaPrincipalRelEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_6, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnuTelaPrincipalRelEmp.setText("Relatório de emprestimos");
+        mnuTelaPrincipalRelEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTelaPrincipalRelEmpActionPerformed(evt);
+            }
+        });
+        jMenu12.add(mnuTelaPrincipalRelEmp);
 
         jMenuBar1.add(jMenu12);
 
@@ -378,6 +445,48 @@ public class TelaPrincipal extends javax.swing.JFrame {
         loanHistory.toFront();
     }//GEN-LAST:event_mnuPrincipalEmpDevActionPerformed
 
+    private void mnuTelaPrincipalRelLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTelaPrincipalRelLivrosActionPerformed
+        generateReport("RelatorioDeLivros.jasper", "Relatorio de livros");
+    }//GEN-LAST:event_mnuTelaPrincipalRelLivrosActionPerformed
+
+    private void mnuTelaPrincipalRelLeitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTelaPrincipalRelLeitoresActionPerformed
+        generateReport("RelatorioDeLeitores.jasper", "Relatorio de Leitores");
+    }//GEN-LAST:event_mnuTelaPrincipalRelLeitoresActionPerformed
+
+    private void mnuTelaPrincipalRelAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTelaPrincipalRelAdmActionPerformed
+        generateReport("RelatorioDeAdministradores.jasper", "Relatorio de Administradores");
+    }//GEN-LAST:event_mnuTelaPrincipalRelAdmActionPerformed
+
+    private void mnuTelaPrincipalRelBibliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTelaPrincipalRelBibliActionPerformed
+        generateReport("RelatorioDeBibliotecarios.jasper", "Relatorio de Bibliotecarios");
+    }//GEN-LAST:event_mnuTelaPrincipalRelBibliActionPerformed
+
+    private void mnuTelaPrincipalRelExempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTelaPrincipalRelExempActionPerformed
+        generateReport("RelatorioDeExemplares.jasper", "Relatorio de Exemplares");
+    }//GEN-LAST:event_mnuTelaPrincipalRelExempActionPerformed
+
+    private void mnuTelaPrincipalRelEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTelaPrincipalRelEmpActionPerformed
+        generateReport("RelatorioDeEmprestimos.jasper", "Relatorio de Emprestimos");
+    }//GEN-LAST:event_mnuTelaPrincipalRelEmpActionPerformed
+
+    private void mnuPrincipalEdtLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalEdtLivroActionPerformed
+        
+    }//GEN-LAST:event_mnuPrincipalEdtLivroActionPerformed
+
+    private void generateReport(String jasperFile, String title){
+        try(InputStream in = getClass().getResourceAsStream("/"+jasperFile)){
+            JasperPrint jasperprint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+            JasperViewer jasperViewer = new JasperViewer(jasperprint, false);
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+            dialog.setVisible(true);
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -400,7 +509,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar5;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -417,6 +525,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuPrincipalEmpDev;
     private javax.swing.JMenuItem mnuPrincipalEmpHist;
     private javax.swing.JMenuItem mnuPrincipalEmpNovo;
+    private javax.swing.JMenuItem mnuTelaPrincipalRelAdm;
+    private javax.swing.JMenuItem mnuTelaPrincipalRelBibli;
+    private javax.swing.JMenuItem mnuTelaPrincipalRelEmp;
+    private javax.swing.JMenuItem mnuTelaPrincipalRelExemp;
+    private javax.swing.JMenuItem mnuTelaPrincipalRelLeitores;
+    private javax.swing.JMenuItem mnuTelaPrincipalRelLivros;
     private javax.swing.JPanel pnlTelaPrincipal;
     // End of variables declaration//GEN-END:variables
 }

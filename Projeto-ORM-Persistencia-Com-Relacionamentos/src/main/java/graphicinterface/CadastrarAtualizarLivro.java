@@ -32,6 +32,8 @@ public class CadastrarAtualizarLivro extends javax.swing.JInternalFrame {
         }
         return instancia;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

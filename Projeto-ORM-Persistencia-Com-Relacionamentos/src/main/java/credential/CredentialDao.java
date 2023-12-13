@@ -122,6 +122,7 @@ public class CredentialDao extends Dao<Credential>{
                 credential = extractObject(resultSet);
                 User auxu = new UserDao().findById(credential.getUser().getId());
                 auxu.setId(credential.getUser().getId());
+                System.out.println(auxu);
                 return auxu;
             }
         }catch(Exception ex){

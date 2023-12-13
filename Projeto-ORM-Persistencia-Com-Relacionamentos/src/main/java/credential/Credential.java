@@ -97,7 +97,7 @@ public class Credential extends Entity{
 
     @Override
     public String toString() {
-        return "Credential{" + "username=" + username + ", password=" + password + ", lastAccess=" + lastAccess + ", enabled=" + enabled + ", user=" + user.getId() + '}';
+        return "Credential{id="+ getId() + "username=" + username + ", password=" + password + ", lastAccess=" + lastAccess + ", enabled=" + enabled + ", user=" + user.getId() + '}';
     }
     
     
