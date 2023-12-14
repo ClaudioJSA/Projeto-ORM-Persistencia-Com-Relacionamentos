@@ -202,7 +202,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Cadastrar.setText("Cadastrar");
 
         mnuPrincipalCadLeitor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        mnuPrincipalCadLeitor.setIcon(new ImageIcon(getClass().getResource("/aluno.png")));
         mnuPrincipalCadLeitor.setText("Cadastrar leitor");
         mnuPrincipalCadLeitor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,7 +211,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Cadastrar.add(mnuPrincipalCadLeitor);
 
         mnuPrincipalCadBibli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        mnuPrincipalCadBibli.setIcon(new ImageIcon(getClass().getResource("/bibli.png")));
         mnuPrincipalCadBibli.setText("Cadastrar bibliotecário");
         mnuPrincipalCadBibli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +229,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Cadastrar.add(mnuPrincipalCadAdmin);
 
         mnuPrincipalCadExemp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        mnuPrincipalCadExemp.setIcon(new ImageIcon(getClass().getResource("/cadlivro.png")));
         mnuPrincipalCadExemp.setText("Cadastrar exemplar");
         mnuPrincipalCadExemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
